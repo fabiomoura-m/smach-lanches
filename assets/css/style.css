@@ -38,3 +38,37 @@ body {
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
 }
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 318px 1fr;
+    grid-template-rows: calc(100vh - 48px);
+}
+.aside {
+    padding: 64px 69px 32px 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 47px 0px 28px rgba(0, 0, 0, 0.01),
+        21px 0px 21px rgba(0, 0, 0, 0.02), 5px 0px 11px rgba(0, 0, 0, 0.02),
+        0px 0px 0px rgba(0, 0, 0, 0.02);
+}
+.aside .logo {
+    margin-left: 69px;
+}
+.aside .informational-data {
+    margin-top: auto;
+    margin-left: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--color-neutral);
+}
