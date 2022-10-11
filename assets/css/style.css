@@ -48,7 +48,6 @@ body {
     grid-template-columns: 318px 1fr;
     grid-template-rows: calc(100vh - 48px);
 }
-<<<<<<< HEAD
 .aside {
     padding: 64px 69px 32px 0;
     display: flex;
@@ -85,8 +84,11 @@ body {
     font-size: 14px;
     font-weight: 500;
     line-height: 17px;
-=======
-.footer {
-    height: 48px;
->>>>>>> e229a8c (Construindo tabela de pedidos)
+}
+section{
+    width: 100%;
+}
+
+.order-table {
+    width: 100%;
 }
