@@ -72,3 +72,16 @@ body {
     line-height: 17px;
     color: var(--color-neutral);
 }
+
+.footer {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow', sans-serif;
+    border-top: 1px solid #f3f3f3;
+    color: #b3b3b3;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+}
