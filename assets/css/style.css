@@ -73,6 +73,43 @@ body {
     color: var(--color-neutral);
 }
 
+main {
+    padding: 21px;
+}
+
+.orders header {
+    margin-bottom: 26px;
+}
+
+.orders header h1 {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    color: var(--color-neutral-600);
+}
+
+.orders .button-newOrder {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    border: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 60px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.orders .button-newOrder:hover {
+    background-color: var(--color-accent-700);
+}
+
 .footer {
     height: 48px;
     display: flex;
@@ -84,6 +121,7 @@ body {
     font-size: 14px;
     font-weight: 500;
     line-height: 17px;
+<<<<<<< HEAD
 }
 section{
     width: 100%;
@@ -91,4 +129,6 @@ section{
 
 .order-table {
     width: 100%;
+=======
+>>>>>>> 30dcfec7ce045ad99118de649216fda4685441af
 }
