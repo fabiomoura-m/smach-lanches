@@ -168,19 +168,6 @@ main {
     background-color: var(--color-primary-200);
 }
 
-.footer {
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Barlow', sans-serif;
-    border-top: 1px solid #f3f3f3;
-    color: #b3b3b3;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 17px;
-}
-
 .table {
     width: 100%;
 }
@@ -189,7 +176,7 @@ main {
     width: 100%;
     border-top: solid var(--color-neutral-200) 1px;
     border-bottom: solid var(--color-neutral-200) 1px;
-    background-color: #ECECEC;
+    background-color: #ececec;
     text-align: left;
 }
 
@@ -213,8 +200,13 @@ main {
     color: var(--color-neutral-200);
 }
 
+/* SEÇÃO NOVO PEDIDO */
+
+.new-order .header {
+    margin-bottom: 21px;
+}
 .filter-request {
-    margin-bottom: 56px;
+    margin-bottom: 32px;
 }
 
 .filter-request label {
@@ -232,7 +224,7 @@ main {
 }
 
 form .search-product {
-    margin-bottom: 27px;
+    margin-bottom: 20px;
 }
 
 form .search-product label {
@@ -279,7 +271,7 @@ form .search-product input {
 }
 
 form {
-    margin-bottom: 32px;
+    margin-bottom: 20px;
 }
 
 .container-fields {
@@ -289,13 +281,17 @@ form {
     margin-bottom: 16px;
 }
 
-.field-amount label, .field-product label, .field-price label {
+.field-amount label,
+.field-product label,
+.field-price label {
     display: block;
     line-height: 22px;
     color: var(--color-neutral);
 }
 
-.field-amount input, .field-product input, .field-price input {
+.field-amount input,
+.field-product input,
+.field-price input {
     padding: 8px 16px;
     border: 1px solid var(--color-neutral);
     border-radius: 8px;
@@ -303,12 +299,29 @@ form {
     color: var(--color-neutral-200);
 }
 
-.field-product {
+.field-amount {
+    max-width: 136px;
     width: 100%;
-    max-width: 556px;
+}
+
+.field-amount input {
+    width: 100%;
+}
+
+.field-product {
+    flex: 1;
+    min-width: 182px;
 }
 
 .field-product input {
+    width: 100%;
+}
+
+.field-price {
+    max-width: 182px;
+    width: 100%;
+}
+.field-price input {
     width: 100%;
 }
 
@@ -327,4 +340,57 @@ form {
     padding: 8px 16px;
     margin-left: auto;
     cursor: pointer;
+}
+
+.new-order .feedback-order {
+    margin-top: 10px;
+}
+
+.container-set-save {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: flex-end;
+}
+
+.button-cancel {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--color-accent);
+    background-color: var(--color-white);
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 8px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.button-cancel:hover {
+    background-color: var(--color-accent-200);
+}
+.button-save {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    padding: 8px 16px;
+    border: 0;
+    border-radius: 8px;
+    color: white;
+    background-color: var(--color-neutral-200);
+    cursor: pointer;
+}
+
+.footer {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow', sans-serif;
+    border-top: 1px solid #f3f3f3;
+    color: #b3b3b3;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
 }
