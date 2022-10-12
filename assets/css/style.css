@@ -81,11 +81,15 @@ main {
     padding: 21px;
 }
 
-.orders header {
+.orders {
+    display: none;
+}
+
+.header {
     margin-bottom: 26px;
 }
 
-.orders header h1 {
+.header h1 {
     font-family: 'Barlow', sans-serif;
     font-weight: 700;
     font-size: 32px;
@@ -208,3 +212,22 @@ main {
     line-height: 31px;
     color: var(--color-neutral-200);
 }
+
+.filter-request {
+    margin-bottom: 56px;
+}
+
+.filter-request label {
+    line-height: 22px;
+    display: block;
+    color: var(--color-neutral);
+    margin-bottom: 11px;
+}
+
+.field-request {
+    display: inline-block;
+    margin-right: 32px;
+    line-height: 22px;
+    font-weight: 500;
+}
+
