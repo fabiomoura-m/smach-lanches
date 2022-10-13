@@ -27,11 +27,11 @@
             </div>
         </aside>
         <main class="main">
-            <section class="orders">
+            <section class="orders" id="orders">
                 <header class="header">
                     <h1>Todos os pedidos</h1>
                 </header>
-                <button class="button-newOrder">
+                <button class="button-newOrder" id="btn-newOrder">
                     <img src="assets/images/most.svg" alt="">
                     Novo pedido
                 </button>
@@ -76,7 +76,7 @@
                 </div>
             </section>
 
-            <section class="new-order">
+            <section class="new-order" id="new-order">
                 <header class="header">
                     <h1>Novo pedido</h1>
                 </header>
@@ -93,12 +93,12 @@
                         </div>
                     </div>
                 </div>
-                <form action="">
+                <form action="#">
                     <div class="search-product">
                         <label for="">Buscar produto</label>
                         <div class="search-product-fields">
-                            <input type="text" placeholder="código do produto">
-                            <button class="button-search">
+                            <input type="text" placeholder="código do produto" id="codeProduct">
+                            <button class="button-search" id="btn-search">
                                 <img src="/assets/images/search.svg" alt="">
                                 Buscar
                             </button>
@@ -111,14 +111,14 @@
                         </div>
                         <div class="field-product">
                             <label for="">Produto</label>
-                            <input type="text" placeholder="Nome do produto">
+                            <input type="text" placeholder="Nome do produto" id="nameProduct">
                         </div>
                         <div class="field-price">
                             <label for="">Preço</label>
-                            <input type="text" placeholder="R$ 0,00">
+                            <input type="text" placeholder="R$ 0,00" id="priceProduct">
                         </div>
                     </div>
-                    <button class="button-addProduct">
+                    <button class="button-addProduct" id="btn-addProduct" disabled>
                         <img src="/assets/images/most.svg" alt="">
                         Adicionar produto
                     </button>

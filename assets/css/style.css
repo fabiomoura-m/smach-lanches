@@ -121,9 +121,6 @@ main {
 
 /* SEÇÃO DE PEDIDOS */
 
-.orders {
-    display: none;
-}
 
 .header {
     margin-bottom: 26px;
@@ -230,6 +227,7 @@ main {
 .new-order {
     display: flex;
     flex-direction: column;
+    display: none;
 }
 
 .new-order .header {
