@@ -38,17 +38,55 @@
 body {
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+
+    padding: 7px 16px;
+
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+input {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 22px;
+    padding: 8px 16px;
+    border: 1px solid var(--color-neutral);
+    border-radius: 8px;
+    color: var(--color-neutral);
+}
+
+input::placeholder {
+    color: var(--color-neutral-200);
+}
+
+label {
+    display: block;
+    line-height: 22px;
+    color: var(--color-neutral);
 }
 
 .container {
+    flex: 1;
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
 
     display: grid;
     grid-template-columns: 318px 1fr;
-    grid-template-rows: calc(100vh - 48px);
 }
+
+/* ASIDE */
 
 .aside {
     padding: 64px 69px 32px 0;
@@ -81,6 +119,8 @@ main {
     padding: 21px;
 }
 
+/* SEÇÃO DE PEDIDOS */
+
 .orders {
     display: none;
 }
@@ -98,19 +138,13 @@ main {
 }
 
 .orders .button-newOrder {
-    padding: 8px 16px;
-    border-radius: 8px;
     background-color: var(--color-accent);
     color: var(--color-white);
-    border: 0;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 22px;
+
     display: flex;
     align-items: center;
     gap: 16px;
     margin-bottom: 60px;
-    cursor: pointer;
     transition: 0.3s;
 }
 
@@ -126,9 +160,6 @@ main {
 }
 
 .label-filter {
-    color: var(--color-neutral);
-    display: block;
-    line-height: 22px;
     margin-bottom: 8px;
 }
 
@@ -152,16 +183,10 @@ main {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
     color: var(--color-primary);
-    padding: 8px 16px;
     background-color: transparent;
     border: 1px solid var(--color-primary);
-    border-radius: 8px;
     transition: 0.3s;
-    cursor: pointer;
 }
 
 .button-print:hover {
@@ -202,25 +227,67 @@ main {
 
 /* SEÇÃO NOVO PEDIDO */
 
+.new-order {
+    display: flex;
+    flex-direction: column;
+}
+
 .new-order .header {
-    margin-bottom: 21px;
+    margin-bottom: 20px;
 }
 .filter-request {
-    margin-bottom: 32px;
+    margin-bottom: 30px;
 }
-
-.filter-request label {
-    line-height: 22px;
-    display: block;
+.filter-request p {
     color: var(--color-neutral);
-    margin-bottom: 11px;
+    line-height: 22px;
+    margin-bottom: 6px;
+}
+.fields-request {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+.field-request {
+    display: flex;
+    align-items: center;
+}
+.field-request input {
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--color-primary);
+    border-radius: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+.field-request input:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0;
+    position: absolute;
+}
+.filter-request input:checked:before {
+    opacity: 1;
+}
+.field-request label {
+    padding-left: 4px;
+    color: #000;
+    font-weight: 500;
 }
 
-.field-request {
-    display: inline-block;
-    margin-right: 32px;
-    line-height: 22px;
-    font-weight: 500;
+form {
+    margin-bottom: 20px;
 }
 
 form .search-product {
@@ -228,7 +295,6 @@ form .search-product {
 }
 
 form .search-product label {
-    display: block;
     color: var(--color-neutral);
     line-height: 22px;
 }
@@ -242,11 +308,6 @@ form .search-product label {
 form .search-product input {
     width: 100%;
     max-width: 349px;
-    padding: 8px 16px;
-    border: 1px solid var(--color-neutral);
-    border-radius: 8px;
-    font-size: 16px;
-    line-height: 22px;
     color: var(--color-neutral-200);
 }
 
@@ -254,15 +315,9 @@ form .search-product input {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 8px 16px;
     background: transparent;
     border: 1px solid var(--color-primary);
-    border-radius: 8px;
-    font-size: 16px;
-    line-height: 22px;
     color: var(--color-primary);
-    font-weight: 600;
-    cursor: pointer;
     transition: 0.3s;
 }
 
@@ -270,33 +325,11 @@ form .search-product input {
     background-color: var(--color-primary-200);
 }
 
-form {
-    margin-bottom: 20px;
-}
-
 .container-fields {
     display: flex;
     align-items: center;
     gap: 16px;
     margin-bottom: 16px;
-}
-
-.field-amount label,
-.field-product label,
-.field-price label {
-    display: block;
-    line-height: 22px;
-    color: var(--color-neutral);
-}
-
-.field-amount input,
-.field-product input,
-.field-price input {
-    padding: 8px 16px;
-    border: 1px solid var(--color-neutral);
-    border-radius: 8px;
-    font-size: 16px;
-    color: var(--color-neutral-200);
 }
 
 .field-amount {
@@ -332,21 +365,15 @@ form {
     gap: 16px;
     background: var(--color-neutral-200);
     color: var(--color-white);
-    font-size: 16px;
-    line-height: 22px;
-    font-weight: 600;
-    border-radius: 8px;
-    border: none;
-    padding: 8px 16px;
     margin-left: auto;
-    cursor: pointer;
 }
 
 .new-order .feedback-order {
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 .container-set-save {
+    margin-top: 3px;
     display: flex;
     align-items: center;
     gap: 16px;
@@ -354,14 +381,8 @@ form {
 }
 
 .button-cancel {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
     color: var(--color-accent);
     background-color: var(--color-white);
-    padding: 8px 16px;
-    border: 0;
     border-radius: 8px;
     transition: 0.3s;
     cursor: pointer;
@@ -370,26 +391,19 @@ form {
     background-color: var(--color-accent-200);
 }
 .button-save {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-    padding: 8px 16px;
-    border: 0;
-    border-radius: 8px;
     color: white;
     background-color: var(--color-neutral-200);
     cursor: pointer;
 }
 
 .footer {
-    height: 48px;
+    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Barlow', sans-serif;
     border-top: 1px solid #f3f3f3;
-    color: #b3b3b3;
+    color: var(--color-neutral-200);
     font-size: 14px;
     font-weight: 500;
     line-height: 17px;

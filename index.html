@@ -81,14 +81,16 @@
                     <h1>Novo pedido</h1>
                 </header>
                 <div class="filter-request">
-                    <label for="">Tipo de consumo</label>
-                    <div class="field-request">
-                        <input type="radio">
-                        Delivery
-                    </div>
-                    <div class="field-request">
-                        <input type="radio">
-                        Salão
+                    <p>Tipo de consumo</p>
+                    <div class="fields-request">
+                        <div class="field-request">
+                            <input type="radio" name="type-request" id="delivery">
+                            <label for="delivery">Delivery</label>
+                        </div>
+                        <div class="field-request">
+                            <input type="radio" name="type-request" id="hall">
+                            <label for="hall">Salão</label>
+                        </div>
                     </div>
                 </div>
                 <form action="">
@@ -147,6 +149,7 @@
     <footer class="footer">
         Copyright © 2022 M & M Technologies - Todos os direitos reservados
     </footer>
+
 
     <script src="assets/js/script.js"></script>
 </body>
