@@ -375,7 +375,11 @@ form .search-product input {
     display: flex;
     align-items: center;
     gap: 16px;
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+.total-order {
+    display: none;
 }
 
 .button-cancel {

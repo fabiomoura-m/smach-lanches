@@ -67,8 +67,11 @@ let tBody = document.getElementById('tBodyProduct');
 
 let buttonCancelOrder = document.getElementById('btn-cancel');
 let form = document.getElementById('formOrder');
+let containerTotalOrder = document.getElementById('total-order');
+let totalAmountOrder = document.getElementById('total-amount-order');
 
 let productFound = {};
+let arrayOrder = [];
 
 
 function changeSection(){
@@ -79,7 +82,6 @@ function changeSection(){
 function searchProduct(){
     let codeProduct = fieldSearchProduct.value;
     productFound = productList.find((product) => codeProduct == product.codigo);
-    console.log(productFound);
     if (productFound !== undefined){
         fieldNameProduct.value = productFound.produto;
         fieldPriceProduct.value = productFound.preco;
@@ -102,14 +104,23 @@ function addProductOnTable(){
         <td>${fieldAmountProduct.value}</td>
         <td>${totalAmount}</td>
     </tr>`;
+    productFound = {
+        ...productFound, quantidade: fieldAmountProduct.value
+    }
+    arrayOrder.push(productFound);
+    let totalOrder = arrayOrder.reduce((atual, item) => {return atual + (item.quantidade * item.preco)}, 0);
     tBody.innerHTML += trTds;
     feedbackNoProducts.style.display = 'none';
+    containerTotalOrder.style.display = 'block';
+    totalAmountOrder.innerHTML = `Total do pedido: R$ ${totalOrder}`;
 }
 
 function cancelOrder(){
     form.reset();
     tBody.innerHTML = '';
     feedbackNoProducts.style.display = 'flex';
+    containerTotalOrder.style.display = 'none';
+    arrayOrder = [];
 }
 
 buttonAddNewOrder.addEventListener('click', changeSection);
