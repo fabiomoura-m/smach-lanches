@@ -63,7 +63,13 @@ let sectionNewOrder = document.getElementById('new-order');
 let buttonAddProduct = document.getElementById('btn-addProduct');
 let fieldAmountProduct = document.getElementById('amountProduct');
 let feedbackNoProducts = document.getElementById('feedback-order');
+let tBody = document.getElementById('tBodyProduct');
+
+let buttonCancelOrder = document.getElementById('btn-cancel');
+let form = document.getElementById('formOrder');
+
 let productFound = {};
+
 
 function changeSection(){
     sectionOrder.style.display = 'none';
@@ -88,7 +94,6 @@ function searchProduct(){
 }
 
 function addProductOnTable(){
-    let tBody = document.getElementById('tBodyProduct');
     let totalAmount = fieldAmountProduct.value * productFound.preco;
     let trTds = `
     <tr>
@@ -101,8 +106,15 @@ function addProductOnTable(){
     feedbackNoProducts.style.display = 'none';
 }
 
+function cancelOrder(){
+    form.reset();
+    tBody.innerHTML = '';
+    feedbackNoProducts.style.display = 'flex';
+}
+
 buttonAddNewOrder.addEventListener('click', changeSection);
 buttonSearchProduct.addEventListener('click', searchProduct);
 buttonAddProduct.addEventListener('click', addProductOnTable);
+buttonCancelOrder.addEventListener('click', cancelOrder)
 
 
