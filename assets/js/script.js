@@ -13,6 +13,41 @@ let productList = [
         codigo: 1003,
         produto: 'SMACH BUG EM PROD - Hambúrguer meio torto',
         preco: 25
+    },
+    {
+        codigo: 1004,
+        produto: 'Combo Econômico SMACH Char 1 - Pão com Carne',
+        preco: 15
+    },
+    {
+        codigo: 1005,
+        produto: 'Especial SMACH CSS - Hambúrguer colorido e alinhado',
+        preco: 65
+    },
+    {
+        codigo: 2001,
+        produto: 'Refrigerante 350 ml',
+        preco: 8
+    },
+    {
+        codigo: 2002,
+        produto: 'Água 500 ml',
+        preco: 5
+    },
+    {
+        codigo: 2003,
+        produto: 'Suco 350 ml',
+        preco: 7
+    },
+    {
+        codigo: 3001,
+        produto: 'Sorvete 300 ml',
+        preco: 15
+    },
+    {
+        codigo: 3002,
+        produto: 'Sobremesa doce SMACH ARRAY',
+        preco: 50
     }
 ];
 
