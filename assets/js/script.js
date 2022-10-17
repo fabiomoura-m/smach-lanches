@@ -73,16 +73,16 @@ let totalAmountOrder = document.getElementById('total-amount-order');
 let productFound = {};
 let arrayOrder = [];
 
-
-function changeSection(){
+function changeSection() {
     sectionOrder.style.display = 'none';
     sectionNewOrder.style.display = 'flex';
 }
 
-function searchProduct(){
+function searchProduct(e) {
+    e.preventDefault();
     let codeProduct = fieldSearchProduct.value;
-    productFound = productList.find((product) => codeProduct == product.codigo);
-    if (productFound !== undefined){
+    productFound = productList.find(product => codeProduct == product.codigo);
+    if (productFound !== undefined) {
         fieldNameProduct.value = productFound.produto;
         fieldPriceProduct.value = productFound.preco;
         fieldAmountProduct.value = '1';
@@ -92,10 +92,11 @@ function searchProduct(){
         fieldPriceProduct.value = '';
         buttonAddProduct.setAttribute('disabled', 'true');
         alert('Código do produto não encontrado');
-    };
+    }
 }
 
-function addProductOnTable(){
+function addProductOnTable(e) {
+    e.preventDefault();
     let totalAmount = fieldAmountProduct.value * productFound.preco;
     let trTds = `
     <tr>
@@ -105,17 +106,20 @@ function addProductOnTable(){
         <td>${totalAmount}</td>
     </tr>`;
     productFound = {
-        ...productFound, quantidade: fieldAmountProduct.value
-    }
+        ...productFound,
+        quantidade: fieldAmountProduct.value
+    };
     arrayOrder.push(productFound);
-    let totalOrder = arrayOrder.reduce((atual, item) => {return atual + (item.quantidade * item.preco)}, 0);
+    let totalOrder = arrayOrder.reduce((atual, item) => {
+        return atual + item.quantidade * item.preco;
+    }, 0);
     tBody.innerHTML += trTds;
     feedbackNoProducts.style.display = 'none';
     containerTotalOrder.style.display = 'block';
     totalAmountOrder.innerHTML = `Total do pedido: R$ ${totalOrder}`;
 }
 
-function cancelOrder(){
+function cancelOrder() {
     form.reset();
     tBody.innerHTML = '';
     feedbackNoProducts.style.display = 'flex';
@@ -126,6 +130,4 @@ function cancelOrder(){
 buttonAddNewOrder.addEventListener('click', changeSection);
 buttonSearchProduct.addEventListener('click', searchProduct);
 buttonAddProduct.addEventListener('click', addProductOnTable);
-buttonCancelOrder.addEventListener('click', cancelOrder)
-
-
+buttonCancelOrder.addEventListener('click', cancelOrder);

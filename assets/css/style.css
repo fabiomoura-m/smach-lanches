@@ -121,7 +121,6 @@ main {
 
 /* SEÇÃO DE PEDIDOS */
 
-
 .header {
     margin-bottom: 26px;
 }
@@ -196,14 +195,27 @@ main {
 
 .order-table {
     width: 100%;
+    /* background-color: #ececec; */
+    text-align: left;
+}
+.order-table th {
     border-top: solid var(--color-neutral-200) 1px;
     border-bottom: solid var(--color-neutral-200) 1px;
     background-color: #ececec;
-    text-align: left;
+}
+.order-table th,
+.order-table td {
+    padding: 8px;
 }
 
-.order-table th {
-    padding: 8px;
+.order-table tr {
+    border-bottom: 1px solid #ededed;
+}
+.order-table tr:nth-child(odd) {
+    background-color: var(--color-white);
+}
+.order-table tr:nth-child(even) {
+    background-color: #fbfbfb;
 }
 
 .feedback-order {
