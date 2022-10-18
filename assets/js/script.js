@@ -201,9 +201,32 @@ function saveOrder() {
 
     arrayOrders.push(order);
 
+    showOrder(order);
     feedbackNoProductsOrder.style.display = 'none';
 
     numberOrder++;
+}
+
+function showOrder(order) {
+    sectionOrder.style.display = 'block';
+    sectionNewOrder.style.display = 'none';
+
+    let trTds = '';
+
+    trTds += `
+            <tr>
+                <td>${order.numero}</td>
+                <td>
+                ${order.itens
+                    .map(item => `${item.quantidade} - ${item.produto} </br>`)
+                    .join('')}
+                </td>
+                <td>${order.tipo}</td>
+                <td>${order.valor}</td>
+                <td>${order.status}</td>
+            </tr>`;
+
+    tbodyOrders.innerHTML += trTds;
 }
 
 buttonAddNewOrder.addEventListener('click', changeSection);
