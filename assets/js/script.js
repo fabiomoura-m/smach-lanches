@@ -63,7 +63,7 @@ let sectionNewOrder = document.getElementById('new-order');
 let buttonAddProduct = document.getElementById('btn-addProduct');
 let fieldAmountProduct = document.getElementById('amountProduct');
 let feedbackNoProducts = document.getElementById('feedback-order');
-let tBody = document.getElementById('tBodyProduct');
+let tBodyProduct = document.getElementById('tBodyProduct');
 
 let buttonCancelOrder = document.getElementById('btn-cancel');
 let buttonSaveOrder = document.getElementById('btn-save');
@@ -71,12 +71,12 @@ let form = document.getElementById('formOrder');
 let containerTotalOrder = document.getElementById('total-order');
 let totalAmountOrder = document.getElementById('total-amount-order');
 
-let fieldTypeRequest = document.querySelector(
-    "input[name='type-request']:checked"
-);
+let tbodyOrders = document.getElementById('tBodyOrders');
+let feedbackNoProductsOrder = document.getElementById('feedback-orders');
 
 let productFound = {};
 let arrayOrder = [];
+let arrayOrders = [];
 let numberOrder = 1000;
 
 function changeSection() {
@@ -145,7 +145,7 @@ function addProductOnTable(e) {
         <td>${productFound.total}</td>
     </tr>`;
 
-    tBody.innerHTML += trTds;
+    tBodyProduct.innerHTML += trTds;
     feedbackNoProducts.style.display = 'none';
     containerTotalOrder.style.display = 'block';
     totalAmountOrder.innerHTML = `Total do pedido: R$ ${totalOrder}`;
@@ -163,18 +163,51 @@ function updateOrderList() {
             </tr>`;
     });
 
-    tBody.innerHTML = trTds;
+    tBodyProduct.innerHTML = trTds;
 }
 
 function cancelOrder() {
     form.reset();
-    tBody.innerHTML = '';
+    tBodyProduct.innerHTML = '';
     feedbackNoProducts.style.display = 'flex';
     containerTotalOrder.style.display = 'none';
     arrayOrder = [];
+}
+
+function saveOrder() {
+    let typeRequest = document.querySelector(
+        'input[name="type-request"]:checked'
+    ).value;
+
+    let statusOrder = 'recebido';
+    let totalOrder = arrayOrder.reduce((atual, item) => {
+        return atual + item.quantidade * item.preco;
+    }, 0);
+
+    let itensOrder = arrayOrder.map(item => {
+        return {
+            produto: item.produto,
+            quantidade: item.quantidade
+        };
+    });
+
+    let order = {
+        numero: numberOrder,
+        itens: itensOrder,
+        tipo: typeRequest,
+        valor: totalOrder,
+        status: statusOrder
+    };
+
+    arrayOrders.push(order);
+
+    feedbackNoProductsOrder.style.display = 'none';
+
+    numberOrder++;
 }
 
 buttonAddNewOrder.addEventListener('click', changeSection);
 buttonSearchProduct.addEventListener('click', searchProduct);
 buttonAddProduct.addEventListener('click', addProductOnTable);
 buttonCancelOrder.addEventListener('click', cancelOrder);
+buttonSaveOrder.addEventListener('click', saveOrder);
