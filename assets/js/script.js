@@ -66,12 +66,18 @@ let feedbackNoProducts = document.getElementById('feedback-order');
 let tBody = document.getElementById('tBodyProduct');
 
 let buttonCancelOrder = document.getElementById('btn-cancel');
+let buttonSaveOrder = document.getElementById('btn-save');
 let form = document.getElementById('formOrder');
 let containerTotalOrder = document.getElementById('total-order');
 let totalAmountOrder = document.getElementById('total-amount-order');
 
+let fieldTypeRequest = document.querySelector(
+    "input[name='type-request']:checked"
+);
+
 let productFound = {};
 let arrayOrder = [];
+let numberOrder = 1000;
 
 function changeSection() {
     sectionOrder.style.display = 'none';
@@ -97,26 +103,67 @@ function searchProduct(e) {
 
 function addProductOnTable(e) {
     e.preventDefault();
-    let totalAmount = fieldAmountProduct.value * productFound.preco;
+    let codeProduct = fieldSearchProduct.value;
+    let sameProduct = arrayOrder.find(produto => produto.codigo == codeProduct);
+    let totalOrder = 0;
+
+    productFound = {
+        ...productFound,
+        quantidade: Number(fieldAmountProduct.value),
+        total: fieldAmountProduct.value * productFound.preco
+    };
+
+    if (sameProduct !== undefined) {
+        arrayOrder.forEach(item => {
+            if (item.codigo == sameProduct.codigo) {
+                item.quantidade += Number(fieldAmountProduct.value);
+                item.total = item.quantidade * item.preco;
+            }
+        });
+
+        updateOrderList();
+
+        totalOrder = arrayOrder.reduce((atual, item) => {
+            return atual + item.quantidade * item.preco;
+        }, 0);
+
+        totalAmountOrder.innerHTML = `Total do pedido: R$ ${totalOrder}`;
+        return;
+    }
+
+    arrayOrder.push(productFound);
+
+    totalOrder = arrayOrder.reduce((atual, item) => {
+        return atual + item.quantidade * item.preco;
+    }, 0);
+
     let trTds = `
     <tr>
         <td>${productFound.codigo}</td>
         <td>${productFound.produto}</td>
-        <td>${fieldAmountProduct.value}</td>
-        <td>${totalAmount}</td>
+        <td>${productFound.quantidade}</td>
+        <td>${productFound.total}</td>
     </tr>`;
-    productFound = {
-        ...productFound,
-        quantidade: fieldAmountProduct.value
-    };
-    arrayOrder.push(productFound);
-    let totalOrder = arrayOrder.reduce((atual, item) => {
-        return atual + item.quantidade * item.preco;
-    }, 0);
+
     tBody.innerHTML += trTds;
     feedbackNoProducts.style.display = 'none';
     containerTotalOrder.style.display = 'block';
     totalAmountOrder.innerHTML = `Total do pedido: R$ ${totalOrder}`;
+}
+
+function updateOrderList() {
+    let trTds = '';
+    arrayOrder.forEach(pedido => {
+        trTds += `
+            <tr>
+                <td>${pedido.codigo}</td>
+                <td>${pedido.produto}</td>
+                <td>${pedido.quantidade}</td>
+                <td>${pedido.total}</td>
+            </tr>`;
+    });
+
+    tBody.innerHTML = trTds;
 }
 
 function cancelOrder() {
