@@ -392,6 +392,13 @@ form .search-product input {
 
 .total-order {
     display: none;
+    width: 320px;
+    height: 22px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--color-neutral);
 }
 
 .button-cancel {
@@ -421,4 +428,15 @@ form .search-product input {
     font-size: 14px;
     font-weight: 500;
     line-height: 17px;
+}
+
+.tBodyProduct td {
+    color: var(--color-neutral-300);
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+    width: 94px;
+    height: 38px;
+    background: var(--color-white);
+    border-bottom: 1px solid #EDEDED;
 }
