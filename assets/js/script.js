@@ -75,6 +75,10 @@ let tbodyOrders = document.getElementById('tBodyOrders');
 let feedbackNoProductsOrder = document.getElementById('feedback-orders');
 let buttonOrderStatus = document.getElementById('btn-status');
 
+let buttonsEditDelete = document.getElementById('buttons-edit');
+let filterContainer = document.getElementById('container-filter');
+let checkboxOrder = document.getElementById('checkboxOrder');
+
 let productFound = {};
 let arrayOrder = [];
 let arrayOrders = [];
@@ -217,7 +221,7 @@ function showOrder(order) {
 
     trTds += `
             <tr>
-                <td><input type="checkbox"> ${order.numero}</td>
+                <td><input type="checkbox" id="checkboxOrder"> ${order.numero}</td>
                 <td>
                 ${order.itens
                     .map(item => `${item.quantidade} - ${item.produto} </br>`)
@@ -267,8 +271,14 @@ function changeOrderStatus(orderNumero){
     updateAllOrders();
 }
 
+function showEditDelete(){
+    filterContainer.style.display = 'none';
+    buttonsEditDelete.style.display = 'flex';
+}
+
 buttonAddNewOrder.addEventListener('click', changeSection);
 buttonSearchProduct.addEventListener('click', searchProduct);
 buttonAddProduct.addEventListener('click', addProductOnTable);
 buttonCancelOrder.addEventListener('click', cancelOrder);
 buttonSaveOrder.addEventListener('click', saveOrder);
+checkboxOrder.addEventListener('click', showEditDelete);

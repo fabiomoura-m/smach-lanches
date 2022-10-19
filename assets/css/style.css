@@ -174,7 +174,14 @@ main {
     background: url(../images/arrowdown2.svg) no-repeat center right;
 }
 
-.button-print {
+.buttons-edit {
+    display: none;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.button-print, .btn-edit, .btn-trash {
     display: flex;
     align-items: center;
     justify-content: center;

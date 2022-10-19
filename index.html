@@ -35,7 +35,7 @@
                     <img src="assets/images/most.svg" alt="">
                     Novo pedido
                 </button>
-                <div class="container-filter">
+                <div class="container-filter" id="container-filter">
                     <div>
                         <label for="" class="label-filter">Filtrar por</label>
                         <select name="" id="" class="select-filter">
@@ -57,11 +57,16 @@
                     </button>
                 </div>
 
+                <div class="buttons-edit" id="buttons-edit">
+                    <button class="btn-edit"><img src="/assets/images/edit.svg" alt="">Editar</button>
+                    <button class="btn-trash"><img src="/assets/images/trash.svg" alt="">Excluir</button>
+                </div>
+
                 <div class="table">
                     <table class="order-table">
                         <thead>
                             <tr>
-                                <th width="20%"><input type="checkbox">Nº do pedido</th>
+                                <th width="20%"><input type="checkbox" id="checkboxOrder">Nº do pedido</th>
                                 <th width="30%">itens</th>
                                 <th>tipo</th>
                                 <th>valor</th>
