@@ -430,8 +430,12 @@ form .search-product input {
     line-height: 17px;
 }
 
-.tBodyProduct td {
+.tBodyOrders, .tBodyProduct td {
     color: var(--color-neutral-300);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
     align-items: center;
     padding: 8px;
     gap: 8px;
@@ -439,4 +443,8 @@ form .search-product input {
     height: 38px;
     background: var(--color-white);
     border-bottom: 1px solid #EDEDED;
+}
+
+.button-order-status {
+    padding: 4px 12px;
 }

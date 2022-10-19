@@ -73,6 +73,7 @@ let totalAmountOrder = document.getElementById('total-amount-order');
 
 let tbodyOrders = document.getElementById('tBodyOrders');
 let feedbackNoProductsOrder = document.getElementById('feedback-orders');
+let buttonOrderStatus = document.getElementById('btn-status');
 
 let productFound = {};
 let arrayOrder = [];
@@ -205,6 +206,7 @@ function saveOrder() {
     feedbackNoProductsOrder.style.display = 'none';
 
     numberOrder++;
+    cancelOrder();
 }
 
 function showOrder(order) {
@@ -215,7 +217,7 @@ function showOrder(order) {
 
     trTds += `
             <tr>
-                <td>${order.numero}</td>
+                <td><input type="checkbox"> ${order.numero}</td>
                 <td>
                 ${order.itens
                     .map(item => `${item.quantidade} - ${item.produto} </br>`)
@@ -223,10 +225,46 @@ function showOrder(order) {
                 </td>
                 <td>${order.tipo}</td>
                 <td>${order.valor}</td>
-                <td>${order.status}</td>
+                <td><button class="button-order-status" onclick="changeOrderStatus(${order.numero})">${order.status}</button></td>
             </tr>`;
 
     tbodyOrders.innerHTML += trTds;
+}
+
+function updateAllOrders() {
+    let trTds = '';
+    arrayOrders.forEach(order => {
+        trTds += `
+        <tr>
+            <td>${order.numero}</td>
+            <td>
+                ${order.itens
+                    .map(item => `${item.quantidade} - ${item.produto} </br>`)
+                    .join('')}
+            </td>
+            <td>${order.tipo}</td>
+            <td>${order.valor}</td>
+            <td><button class="button-order-status" onclick="changeOrderStatus(${order.numero})">${order.status}</button></td>
+        </tr>`;
+    });
+
+    tbodyOrders.innerHTML = trTds;
+}
+
+function changeOrderStatus(orderNumero){
+    arrayOrders = arrayOrders.map(order => {
+        if (order.numero == orderNumero) {
+            if(order.status == 'recebido') {
+            order.status = 'pronto';
+            } else if (order.status == 'pronto') {
+                order.status = 'entregue';
+            } else if (order.status == 'entregue') {
+                order.status = 'recebido';
+            }
+        }
+        return order;
+    });
+    updateAllOrders();
 }
 
 buttonAddNewOrder.addEventListener('click', changeSection);
