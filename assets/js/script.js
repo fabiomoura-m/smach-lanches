@@ -114,7 +114,6 @@ function addProductOnTable(e) {
     e.preventDefault();
     buttonSaveOrder.removeAttribute('disabled');
     buttonAddProduct.setAttribute('disabled', 'true');
-    // containerSetSave.style.justifyContent = 'space-between';
     let codeProduct = fieldSearchProduct.value;
     let sameProduct = arrayOrder.find(produto => produto.codigo == codeProduct);
     let totalOrder = 0;
@@ -265,9 +264,15 @@ function updateAllOrders() {
             </td>
             <td>${order.tipo}</td>
             <td>${order.valor}</td>
-            <td><button class="button-order-status" onclick="changeOrderStatus(${
-                order.numero
-            })">${order.status}</button></td>
+            <td><button class="button-order-status ${
+                order.status == 'recebido'
+                    ? ''
+                    : order.status === 'pronto'
+                    ? 'ready'
+                    : 'delivered'
+            }" onclick="changeOrderStatus(${order.numero})">${
+            order.status
+        }</button></td>
         </tr>`;
     });
 
@@ -281,8 +286,6 @@ function changeOrderStatus(orderNumero) {
                 order.status = 'pronto';
             } else if (order.status == 'pronto') {
                 order.status = 'entregue';
-            } else if (order.status == 'entregue') {
-                order.status = 'recebido';
             }
         }
         return order;
