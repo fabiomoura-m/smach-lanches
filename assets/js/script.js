@@ -282,8 +282,8 @@ function changeOrderStatus(orderNumero) {
     updateAllOrders();
 }
 
-function showEditDelete() {
-    if (checkedAll) {
+function showEditDelete(checked) {
+    if (checkedAll || checked) {
         filterContainer.style.display = 'none';
         buttonsEditDelete.style.display = 'flex';
     } else {
@@ -308,9 +308,44 @@ function selectAllCheckbox() {
     }
 }
 
+function editOrExcludeCheckbox() {
+    let checked = false;
+
+    let checkboxs = document.querySelectorAll(
+        'input[type="checkbox"]:checked:not([id=select-all-orders])'
+    );
+
+    if (checkboxs.length >= 1) {
+        checked = true;
+    }
+
+    showEditDelete(checked);
+}
+
+function deleteOrder() {
+    let checkboxs = document.querySelectorAll(
+        'input[type="checkbox"]:checked:not([id=select-all-orders])'
+    );
+
+    checkboxs.forEach(item => {
+        arrayOrders = arrayOrders.filter(
+            order => order.numero != item.parentNode.textContent
+        );
+    });
+
+    updateAllOrders();
+
+    if (arrayOrders.length === 0) {
+        filterContainer.style.display = 'flex';
+        buttonsEditDelete.style.display = 'none';
+        feedbackNoProductsOrder.style.display = 'flex';
+    }
+}
+
 buttonAddNewOrder.addEventListener('click', changeSection);
 buttonSearchProduct.addEventListener('click', searchProduct);
 buttonAddProduct.addEventListener('click', addProductOnTable);
 buttonCancelOrder.addEventListener('click', cancelOrder);
 buttonSaveOrder.addEventListener('click', saveOrder);
 checkboxSelectAllOrders.addEventListener('click', selectAllCheckbox);
+buttonDeleteOrder.addEventListener('click', deleteOrder);
