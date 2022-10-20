@@ -77,12 +77,15 @@ let buttonOrderStatus = document.getElementById('btn-status');
 
 let buttonsEditDelete = document.getElementById('buttons-edit');
 let filterContainer = document.getElementById('container-filter');
-let checkboxOrder = document.getElementById('checkboxOrder');
+let checkboxSelectAllOrders = document.getElementById('select-all-orders');
+
+let buttonDeleteOrder = document.getElementById('btn-delete');
 
 let productFound = {};
 let arrayOrder = [];
 let arrayOrders = [];
 let numberOrder = 1000;
+let checkedAll = false;
 
 function changeSection() {
     sectionOrder.style.display = 'none';
@@ -221,7 +224,9 @@ function showOrder(order) {
 
     trTds += `
             <tr>
-                <td><input type="checkbox" id="checkboxOrder"> ${order.numero}</td>
+                <td><input type="checkbox" onclick="editOrExcludeCheckbox()"> ${
+                    order.numero
+                }</td>
                 <td>
                 ${order.itens
                     .map(item => `${item.quantidade} - ${item.produto} </br>`)
@@ -229,7 +234,9 @@ function showOrder(order) {
                 </td>
                 <td>${order.tipo}</td>
                 <td>${order.valor}</td>
-                <td><button class="button-order-status" onclick="changeOrderStatus(${order.numero})">${order.status}</button></td>
+                <td><button class="button-order-status" onclick="changeOrderStatus(${
+                    order.numero
+                })">${order.status}</button></td>
             </tr>`;
 
     tbodyOrders.innerHTML += trTds;
@@ -240,7 +247,9 @@ function updateAllOrders() {
     arrayOrders.forEach(order => {
         trTds += `
         <tr>
-            <td>${order.numero}</td>
+            <td><input type="checkbox"> ${
+                order.numero
+            } onclick="editOrExcludeCheckbox()</td>
             <td>
                 ${order.itens
                     .map(item => `${item.quantidade} - ${item.produto} </br>`)
@@ -248,18 +257,20 @@ function updateAllOrders() {
             </td>
             <td>${order.tipo}</td>
             <td>${order.valor}</td>
-            <td><button class="button-order-status" onclick="changeOrderStatus(${order.numero})">${order.status}</button></td>
+            <td><button class="button-order-status" onclick="changeOrderStatus(${
+                order.numero
+            })">${order.status}</button></td>
         </tr>`;
     });
 
     tbodyOrders.innerHTML = trTds;
 }
 
-function changeOrderStatus(orderNumero){
+function changeOrderStatus(orderNumero) {
     arrayOrders = arrayOrders.map(order => {
         if (order.numero == orderNumero) {
-            if(order.status == 'recebido') {
-            order.status = 'pronto';
+            if (order.status == 'recebido') {
+                order.status = 'pronto';
             } else if (order.status == 'pronto') {
                 order.status = 'entregue';
             } else if (order.status == 'entregue') {
@@ -271,9 +282,14 @@ function changeOrderStatus(orderNumero){
     updateAllOrders();
 }
 
-function showEditDelete(){
-    filterContainer.style.display = 'none';
-    buttonsEditDelete.style.display = 'flex';
+function showEditDelete() {
+    if (checkedAll) {
+        filterContainer.style.display = 'none';
+        buttonsEditDelete.style.display = 'flex';
+    } else {
+        filterContainer.style.display = 'flex';
+        buttonsEditDelete.style.display = 'none';
+    }
 }
 
 buttonAddNewOrder.addEventListener('click', changeSection);
@@ -281,4 +297,3 @@ buttonSearchProduct.addEventListener('click', searchProduct);
 buttonAddProduct.addEventListener('click', addProductOnTable);
 buttonCancelOrder.addEventListener('click', cancelOrder);
 buttonSaveOrder.addEventListener('click', saveOrder);
-checkboxOrder.addEventListener('click', showEditDelete);
