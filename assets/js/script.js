@@ -337,24 +337,31 @@ function selectCheckbox() {
 }
 
 function deleteOrder() {
+    let message = 'Deseja realmente excluir o pedido?';
     let checkboxs = document.querySelectorAll(
         'input[type="checkbox"]:checked:not([id=select-all-orders])'
     );
 
-    checkboxs.forEach(item => {
-        arrayOrders = arrayOrders.filter(
-            order => order.numero != item.parentNode.textContent
-        );
-    });
-
-    updateAllOrders();
-
-    if (arrayOrders.length === 0) {
-        feedbackNoProductsOrder.style.display = 'flex';
+    if(checkboxs.length > 1){
+        message = 'Deseja realmente excluir os pedidos?';
     }
 
-    filterContainer.style.display = 'flex';
-    deleteContainer.style.display = 'none';
+    if(confirm(message) == true){
+        checkboxs.forEach(item => {
+            arrayOrders = arrayOrders.filter(
+                order => order.numero != item.parentNode.textContent
+            );
+        });
+    
+        updateAllOrders();
+    
+        if (arrayOrders.length === 0) {
+            feedbackNoProductsOrder.style.display = 'flex';
+        }
+    
+        filterContainer.style.display = 'flex';
+        deleteContainer.style.display = 'none';
+    } 
 }
 
 function filterOrdersByType(){
