@@ -68,6 +68,7 @@ let tBodyProduct = document.getElementById('tBodyProduct');
 let buttonCancelOrder = document.getElementById('btn-cancel');
 let buttonSaveOrder = document.getElementById('btn-save');
 let form = document.getElementById('formOrder');
+let containerSetSave = document.getElementById('container-set-save');
 let containerTotalOrder = document.getElementById('total-order');
 let totalAmountOrder = document.getElementById('total-amount-order');
 
@@ -111,6 +112,9 @@ function searchProduct(e) {
 
 function addProductOnTable(e) {
     e.preventDefault();
+    buttonSaveOrder.removeAttribute('disabled');
+    buttonAddProduct.setAttribute('disabled', 'true');
+    // containerSetSave.style.justifyContent = 'space-between';
     let codeProduct = fieldSearchProduct.value;
     let sameProduct = arrayOrder.find(produto => produto.codigo == codeProduct);
     let totalOrder = 0;
@@ -136,6 +140,7 @@ function addProductOnTable(e) {
         }, 0);
 
         totalAmountOrder.innerHTML = `Total do pedido: R$ ${totalOrder}`;
+        form.reset();
         return;
     }
 
@@ -155,8 +160,9 @@ function addProductOnTable(e) {
 
     tBodyProduct.innerHTML += trTds;
     feedbackNoProducts.style.display = 'none';
-    containerTotalOrder.style.display = 'block';
+    containerTotalOrder.style.display = 'flex';
     totalAmountOrder.innerHTML = `Total do pedido: R$ ${totalOrder}`;
+    form.reset();
 }
 
 function updateOrderList() {
@@ -176,6 +182,8 @@ function updateOrderList() {
 
 function cancelOrder() {
     form.reset();
+    buttonSaveOrder.setAttribute('disabled', 'true');
+    buttonAddProduct.setAttribute('disabled', 'true');
     tBodyProduct.innerHTML = '';
     feedbackNoProducts.style.display = 'flex';
     containerTotalOrder.style.display = 'none';

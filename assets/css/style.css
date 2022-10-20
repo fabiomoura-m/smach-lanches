@@ -181,7 +181,9 @@ main {
     margin-bottom: 16px;
 }
 
-.button-print, .btn-edit, .btn-trash {
+.button-print,
+.btn-edit,
+.btn-trash {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -247,6 +249,7 @@ main {
     display: flex;
     flex-direction: column;
     display: none;
+    height: 100%;
 }
 
 .new-order .header {
@@ -380,9 +383,18 @@ form .search-product input {
     align-items: center;
     justify-content: center;
     gap: 16px;
-    background: var(--color-neutral-200);
+    background: var(--color-primary);
     color: var(--color-white);
     margin-left: auto;
+    transition: 0.3s;
+}
+.button-addProduct:disabled {
+    background: var(--color-neutral-200);
+    color: var(--color-white);
+    cursor: not-allowed;
+}
+.button-addProduct:not(:disabled):hover {
+    background: var(--color-primary-700);
 }
 
 .new-order .feedback-order {
@@ -390,11 +402,11 @@ form .search-product input {
 }
 
 .container-set-save {
-    margin-top: 3px;
+    margin-top: auto;
     display: flex;
     align-items: center;
     gap: 16px;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .total-order {
@@ -420,8 +432,15 @@ form .search-product input {
 }
 .button-save {
     color: white;
+    background-color: var(--color-accent);
+    transition: 0.3s;
+}
+.button-save:hover {
+    background-color: var(--color-accent-700);
+}
+.button-save:disabled {
     background-color: var(--color-neutral-200);
-    cursor: pointer;
+    cursor: not-allowed;
 }
 
 .footer {
@@ -437,7 +456,8 @@ form .search-product input {
     line-height: 17px;
 }
 
-.tBodyOrders, .tBodyProduct td {
+.tBodyOrders,
+.tBodyProduct td {
     color: var(--color-neutral-300);
     font-style: normal;
     font-weight: 500;
@@ -449,7 +469,7 @@ form .search-product input {
     width: 94px;
     height: 38px;
     background: var(--color-white);
-    border-bottom: 1px solid #EDEDED;
+    border-bottom: 1px solid #ededed;
 }
 
 .button-order-status {
