@@ -247,9 +247,9 @@ function updateAllOrders() {
     arrayOrders.forEach(order => {
         trTds += `
         <tr>
-            <td><input type="checkbox"> ${
+            <td><input type="checkbox" onclick="editOrExcludeCheckbox()"> ${
                 order.numero
-            } onclick="editOrExcludeCheckbox()</td>
+            } </td>
             <td>
                 ${order.itens
                     .map(item => `${item.quantidade} - ${item.produto} </br>`)
