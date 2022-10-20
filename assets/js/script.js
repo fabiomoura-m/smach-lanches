@@ -82,6 +82,9 @@ let checkboxSelectAllOrders = document.getElementById('select-all-orders');
 
 let buttonDeleteOrder = document.getElementById('btn-delete');
 
+let selectChangeType = document.getElementById('select-filter-type');
+let selectChangeStatus = document.getElementById('select-filter-status');
+
 let productFound = {};
 let arrayOrder = [];
 let arrayOrders = [];
@@ -249,9 +252,9 @@ function showOrder(order) {
     tbodyOrders.innerHTML += trTds;
 }
 
-function updateAllOrders() {
+function updateAllOrders(array = arrayOrders) {
     let trTds = '';
-    arrayOrders.forEach(order => {
+    array.forEach(order => {
         trTds += `
         <tr>
             <td><input type="checkbox" onclick="selectCheckbox()"> ${
@@ -354,6 +357,19 @@ function deleteOrder() {
     deleteContainer.style.display = 'none';
 }
 
+function filterOrdersByType(){
+    let arrayFiltered = [];
+    if(selectChangeType.value == ''){
+        updateAllOrders();
+    } else if (selectChangeType.value == 'Delivery'){
+        arrayFiltered = arrayOrders.filter(order => order.tipo == 'Delivery');
+        updateAllOrders(arrayFiltered);
+    } else if (selectChangeType.value == 'Salão'){
+        arrayFiltered = arrayOrders.filter(order => order.tipo == 'Salão');
+        updateAllOrders(arrayFiltered);
+    }
+}
+
 buttonAddNewOrder.addEventListener('click', changeSection);
 buttonSearchProduct.addEventListener('click', searchProduct);
 buttonAddProduct.addEventListener('click', addProductOnTable);
@@ -361,3 +377,4 @@ buttonCancelOrder.addEventListener('click', cancelOrder);
 buttonSaveOrder.addEventListener('click', saveOrder);
 checkboxSelectAllOrders.addEventListener('click', selectAllCheckbox);
 buttonDeleteOrder.addEventListener('click', deleteOrder);
+selectChangeType.addEventListener('change', filterOrdersByType);
