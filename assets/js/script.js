@@ -292,8 +292,25 @@ function showEditDelete() {
     }
 }
 
+function selectAllCheckbox() {
+    let checkboxs = document.querySelectorAll(
+        'input[type="checkbox"]:not([id=select-all-orders])'
+    );
+
+    checkboxs.forEach(checkbox => {
+        checkbox.checked = checkedAll ? false : true;
+    });
+
+    checkedAll = checkedAll ? false : true;
+
+    if (checkboxs.length > 0) {
+        showEditDelete();
+    }
+}
+
 buttonAddNewOrder.addEventListener('click', changeSection);
 buttonSearchProduct.addEventListener('click', searchProduct);
 buttonAddProduct.addEventListener('click', addProductOnTable);
 buttonCancelOrder.addEventListener('click', cancelOrder);
 buttonSaveOrder.addEventListener('click', saveOrder);
+checkboxSelectAllOrders.addEventListener('click', selectAllCheckbox);
