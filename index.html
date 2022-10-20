@@ -58,7 +58,6 @@
                 </div>
 
                 <div class="buttons-edit" id="buttons-edit">
-                    <button class="btn-edit"><img src="/assets/images/edit.svg" alt="">Editar</button>
                     <button class="btn-trash" id="btn-delete"><img src="/assets/images/trash.svg"
                             alt="">Excluir</button>
                 </div>
@@ -116,15 +115,15 @@
                     <div class="container-fields">
                         <div class="field-amount">
                             <label for="">Quantidade</label>
-                            <input type="text" placeholder="0" id="amountProduct">
+                            <input type="number" placeholder="0" id="amountProduct">
                         </div>
                         <div class="field-product">
                             <label for="">Produto</label>
-                            <input type="text" placeholder="Nome do produto" id="nameProduct">
+                            <input type="text" placeholder="Nome do produto" id="nameProduct" readonly>
                         </div>
                         <div class="field-price">
                             <label for="">Preço</label>
-                            <input type="text" placeholder="R$ 0,00" id="priceProduct">
+                            <input type="text" placeholder="R$ 0,00" id="priceProduct" readonly>
                         </div>
                     </div>
                     <button class="button-addProduct" id="btn-addProduct" disabled>

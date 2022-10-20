@@ -70,6 +70,14 @@ input::placeholder {
     color: var(--color-neutral-200);
 }
 
+input:read-only {
+    background-color: #ececec;
+}
+
+input[type='checkbox']:checked {
+    background: var(--color-primary);
+}
+
 label {
     display: block;
     line-height: 22px;
@@ -176,13 +184,12 @@ main {
 
 .buttons-edit {
     display: none;
-    flex-direction: row;
     gap: 16px;
     margin-bottom: 16px;
+    margin-top: 90px;
 }
 
 .button-print,
-.btn-edit,
 .btn-trash {
     display: flex;
     align-items: center;
@@ -194,7 +201,8 @@ main {
     transition: 0.3s;
 }
 
-.button-print:hover {
+.button-print:hover,
+.btn-trash:hover {
     background-color: var(--color-primary-200);
 }
 
