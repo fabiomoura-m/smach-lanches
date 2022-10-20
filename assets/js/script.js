@@ -102,7 +102,7 @@ function searchProduct(e) {
     productFound = productList.find(product => codeProduct == product.codigo);
     if (productFound !== undefined) {
         fieldNameProduct.value = productFound.produto;
-        fieldPriceProduct.value = productFound.preco;
+        fieldPriceProduct.value = formatPrice(productFound.preco);
         fieldAmountProduct.value = '1';
         buttonAddProduct.removeAttribute('disabled');
     } else {
@@ -141,7 +141,7 @@ function addProductOnTable(e) {
             return atual + item.quantidade * item.preco;
         }, 0);
 
-        totalAmountOrder.innerHTML = `Total do pedido: R$ ${totalOrder}`;
+        totalAmountOrder.innerHTML = `Total do pedido: ${formatPrice(totalOrder)}`;
         form.reset();
         return;
     }
@@ -157,13 +157,13 @@ function addProductOnTable(e) {
         <td>${productFound.codigo}</td>
         <td>${productFound.produto}</td>
         <td>${productFound.quantidade}</td>
-        <td>${productFound.total}</td>
+        <td>${formatPrice(productFound.total)}</td>
     </tr>`;
 
     tBodyProduct.innerHTML += trTds;
     feedbackNoProducts.style.display = 'none';
     containerTotalOrder.style.display = 'flex';
-    totalAmountOrder.innerHTML = `Total do pedido: R$ ${totalOrder}`;
+    totalAmountOrder.innerHTML = `Total do pedido: ${formatPrice(totalOrder)}`;
     form.reset();
 }
 
@@ -175,7 +175,7 @@ function updateOrderList() {
                 <td>${pedido.codigo}</td>
                 <td>${pedido.produto}</td>
                 <td>${pedido.quantidade}</td>
-                <td>${pedido.total}</td>
+                <td>${formatPrice(pedido.total)}</td>
             </tr>`;
     });
 
@@ -243,7 +243,7 @@ function showOrder(order) {
                     .join('')}
                 </td>
                 <td>${order.tipo}</td>
-                <td>${order.valor}</td>
+                <td>${formatPrice(order.valor)}</td>
                 <td><button class="button-order-status" onclick="changeOrderStatus(${
                     order.numero
                 })">${order.status}</button></td>
@@ -266,7 +266,7 @@ function updateAllOrders(array = arrayOrders) {
                     .join('')}
             </td>
             <td>${order.tipo}</td>
-            <td>${order.valor}</td>
+            <td>${formatPrice(order.valor)}</td>
             <td><button class="button-order-status ${
                 order.status == 'Recebido'
                     ? ''
@@ -384,6 +384,13 @@ function filterOrdersByStatus(){
         arrayFiltered = arrayOrders.filter(order => order.status == 'Entregue');
         updateAllOrders(arrayFiltered);
     }
+}
+
+function formatPrice(price){
+    return price.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
 }
 
 buttonAddNewOrder.addEventListener('click', changeSection);
