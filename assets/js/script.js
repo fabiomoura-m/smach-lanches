@@ -197,7 +197,7 @@ function saveOrder() {
         'input[name="type-request"]:checked'
     ).value;
 
-    let statusOrder = 'recebido';
+    let statusOrder = 'Recebido';
     let totalOrder = arrayOrder.reduce((atual, item) => {
         return atual + item.quantidade * item.preco;
     }, 0);
@@ -268,9 +268,9 @@ function updateAllOrders(array = arrayOrders) {
             <td>${order.tipo}</td>
             <td>${order.valor}</td>
             <td><button class="button-order-status ${
-                order.status == 'recebido'
+                order.status == 'Recebido'
                     ? ''
-                    : order.status === 'pronto'
+                    : order.status === 'Pronto'
                     ? 'ready'
                     : 'delivered'
             }" onclick="changeOrderStatus(${order.numero})">${
@@ -285,10 +285,10 @@ function updateAllOrders(array = arrayOrders) {
 function changeOrderStatus(orderNumero) {
     arrayOrders = arrayOrders.map(order => {
         if (order.numero == orderNumero) {
-            if (order.status == 'recebido') {
-                order.status = 'pronto';
-            } else if (order.status == 'pronto') {
-                order.status = 'entregue';
+            if (order.status == 'Recebido') {
+                order.status = 'Pronto';
+            } else if (order.status == 'Pronto') {
+                order.status = 'Entregue';
             }
         }
         return order;
@@ -370,6 +370,22 @@ function filterOrdersByType(){
     }
 }
 
+function filterOrdersByStatus(){
+    let arrayFiltered = [];
+    if(selectChangeStatus.value == ''){
+        updateAllOrders();
+    } else if (selectChangeStatus.value == 'Recebido') {
+        arrayFiltered = arrayOrders.filter(order => order.status == 'Recebido');
+        updateAllOrders(arrayFiltered);
+    } else if (selectChangeStatus.value == 'Pronto') {
+        arrayFiltered = arrayOrders.filter(order => order.status == 'Pronto');
+        updateAllOrders(arrayFiltered);
+    } else if (selectChangeStatus.value == 'Entregue') {
+        arrayFiltered = arrayOrders.filter(order => order.status == 'Entregue');
+        updateAllOrders(arrayFiltered);
+    }
+}
+
 buttonAddNewOrder.addEventListener('click', changeSection);
 buttonSearchProduct.addEventListener('click', searchProduct);
 buttonAddProduct.addEventListener('click', addProductOnTable);
@@ -378,3 +394,4 @@ buttonSaveOrder.addEventListener('click', saveOrder);
 checkboxSelectAllOrders.addEventListener('click', selectAllCheckbox);
 buttonDeleteOrder.addEventListener('click', deleteOrder);
 selectChangeType.addEventListener('change', filterOrdersByType);
+selectChangeStatus.addEventListener('change', filterOrdersByStatus);
