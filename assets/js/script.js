@@ -76,7 +76,7 @@ let tbodyOrders = document.getElementById('tBodyOrders');
 let feedbackNoProductsOrder = document.getElementById('feedback-orders');
 let buttonOrderStatus = document.getElementById('btn-status');
 
-let buttonsEditDelete = document.getElementById('buttons-edit');
+let deleteContainer = document.getElementById('container-delete');
 let filterContainer = document.getElementById('container-filter');
 let checkboxSelectAllOrders = document.getElementById('select-all-orders');
 
@@ -231,7 +231,7 @@ function showOrder(order) {
 
     trTds += `
             <tr>
-                <td><input type="checkbox" onclick="editOrExcludeCheckbox()"> ${
+                <td><input type="checkbox" onclick="selectCheckbox()"> ${
                     order.numero
                 }</td>
                 <td>
@@ -254,7 +254,7 @@ function updateAllOrders() {
     arrayOrders.forEach(order => {
         trTds += `
         <tr>
-            <td><input type="checkbox" onclick="editOrExcludeCheckbox()"> ${
+            <td><input type="checkbox" onclick="selectCheckbox()"> ${
                 order.numero
             } </td>
             <td>
@@ -293,13 +293,13 @@ function changeOrderStatus(orderNumero) {
     updateAllOrders();
 }
 
-function showEditDelete(checked) {
+function showEditDelete(checked = false) {
     if (checkedAll || checked) {
         filterContainer.style.display = 'none';
-        buttonsEditDelete.style.display = 'flex';
+        deleteContainer.style.display = 'flex';
     } else {
         filterContainer.style.display = 'flex';
-        buttonsEditDelete.style.display = 'none';
+        deleteContainer.style.display = 'none';
     }
 }
 
@@ -319,7 +319,7 @@ function selectAllCheckbox() {
     }
 }
 
-function editOrExcludeCheckbox() {
+function selectCheckbox() {
     let checked = false;
 
     let checkboxs = document.querySelectorAll(
@@ -347,10 +347,11 @@ function deleteOrder() {
     updateAllOrders();
 
     if (arrayOrders.length === 0) {
-        filterContainer.style.display = 'flex';
-        buttonsEditDelete.style.display = 'none';
         feedbackNoProductsOrder.style.display = 'flex';
     }
+
+    filterContainer.style.display = 'flex';
+    deleteContainer.style.display = 'none';
 }
 
 buttonAddNewOrder.addEventListener('click', changeSection);
