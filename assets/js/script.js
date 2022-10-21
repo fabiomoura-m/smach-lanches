@@ -85,6 +85,8 @@ let buttonDeleteOrder = document.getElementById('btn-delete');
 let selectChangeType = document.getElementById('select-filter-type');
 let selectChangeStatus = document.getElementById('select-filter-status');
 
+let buttonPrint = document.getElementById('btn-print');
+
 let productFound = {};
 let arrayOrder = [];
 let arrayOrders = [];
@@ -141,7 +143,9 @@ function addProductOnTable(e) {
             return atual + item.quantidade * item.preco;
         }, 0);
 
-        totalAmountOrder.innerHTML = `Total do pedido: ${formatPrice(totalOrder)}`;
+        totalAmountOrder.innerHTML = `Total do pedido: ${formatPrice(
+            totalOrder
+        )}`;
         form.reset();
         return;
     }
@@ -342,44 +346,44 @@ function deleteOrder() {
         'input[type="checkbox"]:checked:not([id=select-all-orders])'
     );
 
-    if(checkboxs.length > 1){
+    if (checkboxs.length > 1) {
         message = 'Deseja realmente excluir os pedidos?';
     }
 
-    if(confirm(message) == true){
+    if (confirm(message) == true) {
         checkboxs.forEach(item => {
             arrayOrders = arrayOrders.filter(
                 order => order.numero != item.parentNode.textContent
             );
         });
-    
+
         updateAllOrders();
-    
+
         if (arrayOrders.length === 0) {
             feedbackNoProductsOrder.style.display = 'flex';
         }
-    
+
         filterContainer.style.display = 'flex';
         deleteContainer.style.display = 'none';
-    } 
+    }
 }
 
-function filterOrdersByType(){
+function filterOrdersByType() {
     let arrayFiltered = [];
-    if(selectChangeType.value == ''){
+    if (selectChangeType.value == '') {
         updateAllOrders();
-    } else if (selectChangeType.value == 'Delivery'){
+    } else if (selectChangeType.value == 'Delivery') {
         arrayFiltered = arrayOrders.filter(order => order.tipo == 'Delivery');
         updateAllOrders(arrayFiltered);
-    } else if (selectChangeType.value == 'Salão'){
+    } else if (selectChangeType.value == 'Salão') {
         arrayFiltered = arrayOrders.filter(order => order.tipo == 'Salão');
         updateAllOrders(arrayFiltered);
     }
 }
 
-function filterOrdersByStatus(){
+function filterOrdersByStatus() {
     let arrayFiltered = [];
-    if(selectChangeStatus.value == ''){
+    if (selectChangeStatus.value == '') {
         updateAllOrders();
     } else if (selectChangeStatus.value == 'Recebido') {
         arrayFiltered = arrayOrders.filter(order => order.status == 'Recebido');
@@ -393,11 +397,15 @@ function filterOrdersByStatus(){
     }
 }
 
-function formatPrice(price){
+function formatPrice(price) {
     return price.toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL'
     });
+}
+
+function printOrders() {
+    window.print();
 }
 
 buttonAddNewOrder.addEventListener('click', changeSection);
@@ -409,3 +417,4 @@ checkboxSelectAllOrders.addEventListener('click', selectAllCheckbox);
 buttonDeleteOrder.addEventListener('click', deleteOrder);
 selectChangeType.addEventListener('change', filterOrdersByType);
 selectChangeStatus.addEventListener('change', filterOrdersByStatus);
+buttonPrint.addEventListener('click', printOrders);
