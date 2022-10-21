@@ -77,7 +77,7 @@ input:read-only {
 }
 
 input[type='checkbox']:checked {
-    background: var(--color-primary);
+    accent-color: orange;
 }
 
 label {

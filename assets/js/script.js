@@ -90,6 +90,9 @@ let feedbackOrders = document.getElementById('feedback-show-order');
 let messageFeedback = document.getElementById('feedback-message');
 let buttonCloseFeedback = document.getElementById('close-feedback');
 
+let date = document.getElementById('date');
+let time = document.getElementById('hour');
+
 let productFound = {};
 let arrayOrder = [];
 let arrayOrders = [];
@@ -521,6 +524,31 @@ function closeFeedback() {
 function returnSectionOrders() {
     sectionOrder.style.display = 'block';
     sectionNewOrder.style.display = 'none';
+}
+
+function showCurrentDate() {
+    let currentDate = new Date();
+    let dateFormatted = `${currentDate.getDate()}/${
+        currentDate.getMonth() + 1
+    }/${currentDate.getFullYear()}`;
+
+    date.innerHTML = dateFormatted;
+}
+showCurrentDate();
+
+function ShowCurrentTime() {
+    let currentDate = new Date();
+    let hour = currentDate.getHours();
+    let minute = currentDate.getMinutes();
+    let second = currentDate.getSeconds();
+
+    time.innerHTML = `- ${fixZero(hour)}:${fixZero(minute)}:${fixZero(second)}`;
+}
+ShowCurrentTime();
+setInterval(ShowCurrentTime, 1000);
+
+function fixZero(time) {
+    return time < 10 ? `0${time}` : time;
 }
 
 buttonAddNewOrder.addEventListener('click', changeSection);
