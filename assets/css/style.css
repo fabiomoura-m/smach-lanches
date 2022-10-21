@@ -41,6 +41,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 button {
@@ -98,7 +99,9 @@ td {
     grid-template-columns: 318px 1fr;
 }
 
-/* ASIDE */
+/* ----------------------------- */
+/* ----------- ASIDE ----------- */
+/* ----------------------------- */
 
 .aside {
     padding: 64px 69px 32px 0;
@@ -131,7 +134,9 @@ main {
     padding: 21px;
 }
 
-/* SEÇÃO DE PEDIDOS */
+/* ----------------------------- */
+/* ----- SEÇÃO DE PEDIDOS ------ */
+/* ----------------------------- */
 
 .header {
     margin-bottom: 26px;
@@ -216,7 +221,6 @@ main {
 
 .order-table {
     width: 100%;
-    /* background-color: #ececec; */
     text-align: left;
 }
 .order-table th {
@@ -255,7 +259,79 @@ main {
     color: var(--color-neutral-200);
 }
 
-/* SEÇÃO NOVO PEDIDO */
+.tBodyOrders,
+.tBodyProduct td {
+    color: var(--color-neutral-300);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+    width: 94px;
+    height: 38px;
+    background: var(--color-white);
+    border-bottom: 1px solid #ededed;
+}
+
+.button-order-status {
+    border: 1px solid var(--color-neutral-700);
+    background-color: var(--color-neutral-200);
+    padding: 4px 12px;
+}
+
+.button-order-status.ready {
+    background-color: var(--color-status-alert-300);
+    border: 1px solid var(--color-status-alert-800);
+    color: var(--color-status-alert-800);
+}
+
+.button-order-status.delivered {
+    background-color: var(--color-status-success-300);
+    border: 1px solid var(--color-status-success-800);
+    color: var(--color-status-success-800);
+}
+
+.container-feedback {
+    position: absolute;
+    top: 50px;
+    right: -400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 357px;
+    padding-left: 16px;
+    padding-right: 4px;
+    height: 48px;
+    font-weight: 500;
+    line-height: 22px;
+    color: var(--color-status-success-800);
+    background-color: var(--color-status-success);
+    box-shadow: -94px 25px 39px rgba(0, 0, 0, 0.01),
+        -53px 14px 33px rgba(0, 0, 0, 0.05), -23px 6px 24px rgba(0, 0, 0, 0.09),
+        -6px 2px 13px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: 0.4s;
+}
+.container-feedback span:last-child {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: 0.4s;
+}
+.container-feedback span:last-child:hover {
+    background: #00eb34;
+}
+
+/* ----------------------------- */
+/* ----- SEÇÃO NOVO PEDIDO ----- */
+/* ----------------------------- */
 
 .new-order {
     display: flex;
@@ -455,6 +531,10 @@ form .search-product input {
     cursor: not-allowed;
 }
 
+/* ----------------------------- */
+/* --------- FOOTER ------------ */
+/* ----------------------------- */
+
 .footer {
     min-height: 48px;
     display: flex;
@@ -468,40 +548,6 @@ form .search-product input {
     line-height: 17px;
 }
 
-.tBodyOrders,
-.tBodyProduct td {
-    color: var(--color-neutral-300);
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 22px;
-    align-items: center;
-    padding: 8px;
-    gap: 8px;
-    width: 94px;
-    height: 38px;
-    background: var(--color-white);
-    border-bottom: 1px solid #ededed;
-}
-
-.button-order-status {
-    border: 1px solid var(--color-neutral-700);
-    background-color: var(--color-neutral-200);
-    padding: 4px 12px;
-}
-
-.button-order-status.ready {
-    background-color: var(--color-status-alert-300);
-    border: 1px solid var(--color-status-alert-800);
-    color: var(--color-status-alert-800);
-}
-
-.button-order-status.delivered {
-    background-color: var(--color-status-success-300);
-    border: 1px solid var(--color-status-success-800);
-    color: var(--color-status-success-800);
-}
-
 @media print {
     .container {
         grid-template-columns: 1fr;
@@ -510,9 +556,6 @@ form .search-product input {
         display: none;
     }
     #btn-newOrder {
-        display: none;
-    }
-    .container-filter {
         display: none;
     }
     .buttons-edit {

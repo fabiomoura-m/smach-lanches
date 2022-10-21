@@ -86,6 +86,9 @@ let selectChangeType = document.getElementById('select-filter-type');
 let selectChangeStatus = document.getElementById('select-filter-status');
 
 let buttonPrint = document.getElementById('btn-print');
+let feedbackOrders = document.getElementById('feedback-show-order');
+let messageFeedback = document.getElementById('feedback-message');
+let buttonCloseFeedback = document.getElementById('close-feedback');
 
 let productFound = {};
 let arrayOrder = [];
@@ -228,6 +231,14 @@ function saveOrder() {
 
     numberOrder++;
     cancelOrder();
+
+    setTimeout(() => {
+        messageFeedback.textContent = 'O pedido foi recebido.';
+        feedbackOrders.style.right = '100px';
+    }, 800);
+    setTimeout(() => {
+        feedbackOrders.style.right = '-300px';
+    }, 5000);
 }
 
 function showOrder(order) {
@@ -365,6 +376,19 @@ function deleteOrder() {
 
         filterContainer.style.display = 'flex';
         deleteContainer.style.display = 'none';
+
+        if (checkboxs.length > 1) {
+            messageFeedback.textContent = 'Os pedidos foram excluídos.';
+        } else {
+            messageFeedback.textContent = 'O pedido foi excluído.';
+        }
+
+        setTimeout(() => {
+            feedbackOrders.style.right = '100px';
+        }, 800);
+        setTimeout(() => {
+            feedbackOrders.style.right = '-300px';
+        }, 5000);
     }
 }
 
@@ -408,6 +432,10 @@ function printOrders() {
     window.print();
 }
 
+function closeFeedback() {
+    feedbackOrders.style.right = '-300px';
+}
+
 buttonAddNewOrder.addEventListener('click', changeSection);
 buttonSearchProduct.addEventListener('click', searchProduct);
 buttonAddProduct.addEventListener('click', addProductOnTable);
@@ -418,3 +446,4 @@ buttonDeleteOrder.addEventListener('click', deleteOrder);
 selectChangeType.addEventListener('change', filterOrdersByType);
 selectChangeStatus.addEventListener('change', filterOrdersByStatus);
 buttonPrint.addEventListener('click', printOrders);
+buttonCloseFeedback.addEventListener('click', closeFeedback);
