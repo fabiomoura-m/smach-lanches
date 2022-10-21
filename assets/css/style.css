@@ -564,6 +564,12 @@ form .search-product input {
     }
 }
 
+@media (max-width: 780px) {
+    .select-filter {
+        width: auto;
+    }
+}
+
 @media (max-width: 475px) {
     body {
         overflow-x: hidden;
@@ -590,9 +596,6 @@ form .search-product input {
         justify-content: center;
         align-items: center;
     }
-    .select-filter {
-        width: auto;
-    }
     .container-fields {
         flex-wrap: wrap;
     }
@@ -603,11 +606,5 @@ form .search-product input {
     .container-set-save {
         margin-top: 10px;
         flex-wrap: wrap;
-    }
-}
-
-@media (max-width: 780px) {
-    .select-filter {
-        width: auto;
     }
 }

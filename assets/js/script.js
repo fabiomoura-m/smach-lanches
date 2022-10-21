@@ -462,10 +462,16 @@ function closeFeedback() {
     feedbackOrders.style.right = '-300px';
 }
 
+function returnSectionOrders() {
+    sectionOrder.style.display = 'block';
+    sectionNewOrder.style.display = 'none';
+}
+
 buttonAddNewOrder.addEventListener('click', changeSection);
 buttonSearchProduct.addEventListener('click', searchProduct);
 buttonAddProduct.addEventListener('click', addProductOnTable);
 buttonCancelOrder.addEventListener('click', cancelOrder);
+buttonCancelOrder.addEventListener('dblclick', returnSectionOrders);
 buttonSaveOrder.addEventListener('click', saveOrder);
 checkboxSelectAllOrders.addEventListener('click', selectAllCheckbox);
 buttonDeleteOrder.addEventListener('click', deleteOrder);
