@@ -38,10 +38,11 @@
 body {
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    overflow-y: auto;
 }
 
 button {
@@ -297,7 +298,7 @@ main {
     position: absolute;
     top: 50px;
     right: -400px;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: space-between;
     max-width: 357px;
@@ -560,5 +561,53 @@ form .search-product input {
     }
     .buttons-edit {
         display: none;
+    }
+}
+
+@media (max-width: 475px) {
+    body {
+        overflow-x: hidden;
+    }
+    .container-feedback {
+        display: none;
+    }
+    .container {
+        grid-template-columns: 1fr;
+    }
+    .aside {
+        padding: 20px;
+        gap: 10px;
+    }
+    .aside .logo {
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .aside .informational-data {
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .select-filter {
+        width: auto;
+    }
+    .container-fields {
+        flex-wrap: wrap;
+    }
+    .table {
+        width: 100%;
+        overflow-x: scroll;
+    }
+    .container-set-save {
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 780px) {
+    .select-filter {
+        width: auto;
     }
 }

@@ -232,12 +232,25 @@ function saveOrder() {
     numberOrder++;
     cancelOrder();
 
+    feedbackOrders.style.display = 'flex';
     setTimeout(() => {
         messageFeedback.textContent = 'O pedido foi recebido.';
-        feedbackOrders.style.right = '100px';
+        if (document.body.clientWidth < 500) {
+            feedbackOrders.style.right = '5px';
+            feedbackOrders.style.top = '330px';
+        } else if (document.body.clientWidth < 820) {
+            feedbackOrders.style.right = '5px';
+            feedbackOrders.style.top = '55px';
+        } else {
+            feedbackOrders.style.top = '50px';
+            feedbackOrders.style.right = '100px';
+        }
     }, 800);
     setTimeout(() => {
         feedbackOrders.style.right = '-300px';
+        setTimeout(() => {
+            feedbackOrders.style.display = 'none';
+        }, 200);
     }, 5000);
 }
 
@@ -383,11 +396,24 @@ function deleteOrder() {
             messageFeedback.textContent = 'O pedido foi excluído.';
         }
 
+        feedbackOrders.style.display = 'flex';
         setTimeout(() => {
-            feedbackOrders.style.right = '100px';
+            if (document.body.clientWidth < 500) {
+                feedbackOrders.style.right = '5px';
+                feedbackOrders.style.top = '340px';
+            } else if (document.body.clientWidth < 820) {
+                feedbackOrders.style.right = '5px';
+                feedbackOrders.style.top = '55px';
+            } else {
+                feedbackOrders.style.top = '50px';
+                feedbackOrders.style.right = '100px';
+            }
         }, 800);
         setTimeout(() => {
             feedbackOrders.style.right = '-300px';
+            setTimeout(() => {
+                feedbackOrders.style.display = 'none';
+            }, 200);
         }, 5000);
     }
 }
