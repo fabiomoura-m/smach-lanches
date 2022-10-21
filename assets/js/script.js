@@ -418,32 +418,88 @@ function deleteOrder() {
     }
 }
 
+let arrayFilteredByType = [];
+let arrayFilteredByStatus = [];
+
 function filterOrdersByType() {
-    let arrayFiltered = [];
-    if (selectChangeType.value == '') {
-        updateAllOrders();
-    } else if (selectChangeType.value == 'Delivery') {
-        arrayFiltered = arrayOrders.filter(order => order.tipo == 'Delivery');
-        updateAllOrders(arrayFiltered);
-    } else if (selectChangeType.value == 'Salão') {
-        arrayFiltered = arrayOrders.filter(order => order.tipo == 'Salão');
-        updateAllOrders(arrayFiltered);
+    let orderType = selectChangeType.value;
+
+    if (arrayFilteredByStatus.length > 0) {
+        if (orderType == '') {
+            updateAllOrders(arrayFilteredByStatus);
+            arrayFilteredByType = [];
+        } else if (orderType == 'Delivery') {
+            arrayFilteredByType = arrayFilteredByStatus.filter(
+                order => order.tipo == 'Delivery'
+            );
+            updateAllOrders(arrayFilteredByType);
+        } else if (orderType == 'Salão') {
+            arrayFilteredByType = arrayFilteredByStatus.filter(
+                order => order.tipo == 'Salão'
+            );
+            updateAllOrders(arrayFilteredByType);
+        }
+    } else {
+        if (orderType == '') {
+            updateAllOrders();
+            arrayFilteredByType = [];
+        } else if (orderType == 'Delivery') {
+            arrayFilteredByType = arrayOrders.filter(
+                order => order.tipo == 'Delivery'
+            );
+            updateAllOrders(arrayFilteredByType);
+        } else if (orderType == 'Salão') {
+            arrayFilteredByType = arrayOrders.filter(
+                order => order.tipo == 'Salão'
+            );
+            updateAllOrders(arrayFilteredByType);
+        }
     }
 }
 
 function filterOrdersByStatus() {
-    let arrayFiltered = [];
-    if (selectChangeStatus.value == '') {
-        updateAllOrders();
-    } else if (selectChangeStatus.value == 'Recebido') {
-        arrayFiltered = arrayOrders.filter(order => order.status == 'Recebido');
-        updateAllOrders(arrayFiltered);
-    } else if (selectChangeStatus.value == 'Pronto') {
-        arrayFiltered = arrayOrders.filter(order => order.status == 'Pronto');
-        updateAllOrders(arrayFiltered);
-    } else if (selectChangeStatus.value == 'Entregue') {
-        arrayFiltered = arrayOrders.filter(order => order.status == 'Entregue');
-        updateAllOrders(arrayFiltered);
+    let orderStatus = selectChangeStatus.value;
+
+    if (arrayFilteredByType.length > 0) {
+        if (orderStatus == '') {
+            updateAllOrders(arrayFilteredByType);
+            arrayFilteredByStatus = [];
+        } else if (orderStatus == 'Recebido') {
+            arrayFilteredByStatus = arrayFilteredByType.filter(
+                order => order.status == 'Recebido'
+            );
+            updateAllOrders(arrayFilteredByStatus);
+        } else if (orderStatus == 'Pronto') {
+            arrayFilteredByStatus = arrayFilteredByType.filter(
+                order => order.status == 'Pronto'
+            );
+            updateAllOrders(arrayFilteredByStatus);
+        } else if (orderStatus == 'Entregue') {
+            arrayFilteredByStatus = arrayFilteredByType.filter(
+                order => order.status == 'Entregue'
+            );
+            updateAllOrders(arrayFilteredByStatus);
+        }
+    } else {
+        if (orderStatus == '') {
+            updateAllOrders();
+            arrayFilteredByStatus = [];
+        } else if (orderStatus == 'Recebido') {
+            arrayFilteredByStatus = arrayOrders.filter(
+                order => order.status == 'Recebido'
+            );
+            updateAllOrders(arrayFilteredByStatus);
+        } else if (orderStatus == 'Pronto') {
+            arrayFilteredByStatus = arrayOrders.filter(
+                order => order.status == 'Pronto'
+            );
+            updateAllOrders(arrayFilteredByStatus);
+        } else if (orderStatus == 'Entregue') {
+            arrayFilteredByStatus = arrayOrders.filter(
+                order => order.status == 'Entregue'
+            );
+            updateAllOrders(arrayFilteredByStatus);
+        }
     }
 }
 
