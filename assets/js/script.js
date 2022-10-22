@@ -271,9 +271,16 @@ function showOrder(order) {
 
     trTds += `
             <tr>
-                <td><input type="checkbox" onclick="selectCheckbox()"> ${
-                    order.number
-                }</td>
+                <td>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="checkbox" id="${
+                            order.number
+                        }" onclick="selectCheckbox()">
+                        <label class="checkbox-label order" for="${
+                            order.number
+                        }">${order.number}</label>
+                    </div>
+                </td>
                 <td>
                 ${order.items
                     .map(item => `${item.amount} - ${item.product} </br>`)
@@ -294,9 +301,16 @@ function updateAllOrders(array = arrayOrders) {
     array.forEach(order => {
         trTds += `
         <tr>
-            <td><input type="checkbox" onclick="selectCheckbox()"> ${
-                order.number
-            } </td>
+            <td>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="checkbox" id="${
+                        order.number
+                    }" onclick="selectCheckbox()">
+                    <label class="checkbox-label order" for="${order.number}">${
+            order.number
+        }</label>
+                </div>              
+            </td>
             <td>
                 ${order.items
                     .map(item => `${item.amount} - ${item.product} </br>`)

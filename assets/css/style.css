@@ -76,10 +76,6 @@ input:read-only {
     background-color: #ececec;
 }
 
-input[type='checkbox']:checked {
-    accent-color: orange;
-}
-
 label {
     display: block;
     line-height: 22px;
@@ -228,6 +224,7 @@ main {
     border-top: solid var(--color-neutral-200) 1px;
     border-bottom: solid var(--color-neutral-200) 1px;
     background-color: #ececec;
+    color: var(--color-neutral-700);
 }
 .order-table th,
 .order-table td {
@@ -242,6 +239,41 @@ main {
 }
 .order-table tr:nth-child(even) {
     background-color: #fbfbfb;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+}
+.checkbox {
+    display: none;
+}
+.checkbox-label {
+    color: var(--color-neutral-700);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.checkbox-label.order {
+    color: var(--color-neutral-300);
+}
+.checkbox-label::before {
+    content: '';
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    box-sizing: border-box;
+    border: 1px solid var(--color-neutral);
+    border-radius: 4px;
+    margin-right: 8px;
+    background-color: var(--color-white);
+    background-image: url("data:image/svg+xml,%3Csvg width='11' height='8' viewBox='0 0 11 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.24621 3.88778L4.16032 6.49257L9.28408 0.999943' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.checkbox:checked + .checkbox-label::before {
+    background-color: var(--color-primary);
+    border: none;
 }
 
 .feedback-order {
