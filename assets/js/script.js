@@ -1,53 +1,53 @@
 let productList = [
     {
-        codigo: 1001,
-        produto: 'Super SMACH COMBO Programado - Hambúrguer + fritas',
-        preco: 55
+        code: 1001,
+        productName: 'Super SMACH COMBO Programado - Hambúrguer + fritas',
+        price: 55
     },
     {
-        codigo: 1002,
-        produto: 'SMACH VariávelBurguer - Hambúrguer com Bacon',
-        preco: 45
+        code: 1002,
+        productName: 'SMACH VariávelBurguer - Hambúrguer com Bacon',
+        price: 45
     },
     {
-        codigo: 1003,
-        produto: 'SMACH BUG EM PROD - Hambúrguer meio torto',
-        preco: 25
+        code: 1003,
+        productName: 'SMACH BUG EM PROD - Hambúrguer meio torto',
+        price: 25
     },
     {
-        codigo: 1004,
-        produto: 'Combo Econômico SMACH Char 1 - Pão com Carne',
-        preco: 15
+        code: 1004,
+        productName: 'Combo Econômico SMACH Char 1 - Pão com Carne',
+        price: 15
     },
     {
-        codigo: 1005,
-        produto: 'Especial SMACH CSS - Hambúrguer colorido e alinhado',
-        preco: 65
+        code: 1005,
+        productName: 'Especial SMACH CSS - Hambúrguer colorido e alinhado',
+        price: 65
     },
     {
-        codigo: 2001,
-        produto: 'Refrigerante 350 ml',
-        preco: 8
+        code: 2001,
+        productName: 'Refrigerante 350 ml',
+        price: 8
     },
     {
-        codigo: 2002,
-        produto: 'Água 500 ml',
-        preco: 5
+        code: 2002,
+        productName: 'Água 500 ml',
+        price: 5
     },
     {
-        codigo: 2003,
-        produto: 'Suco 350 ml',
-        preco: 7
+        code: 2003,
+        productName: 'Suco 350 ml',
+        price: 7
     },
     {
-        codigo: 3001,
-        produto: 'Sorvete 300 ml',
-        preco: 15
+        code: 3001,
+        productName: 'Sorvete 300 ml',
+        price: 15
     },
     {
-        codigo: 3002,
-        produto: 'Sobremesa doce SMACH ARRAY',
-        preco: 50
+        code: 3002,
+        productName: 'Sobremesa doce SMACH ARRAY',
+        price: 50
     }
 ];
 
@@ -96,6 +96,8 @@ let time = document.getElementById('hour');
 let productFound = {};
 let arrayOrder = [];
 let arrayOrders = [];
+let arrayFilteredByType = [];
+let arrayFilteredByStatus = [];
 let numberOrder = 1000;
 let checkedAll = false;
 
@@ -107,10 +109,10 @@ function changeSection() {
 function searchProduct(e) {
     e.preventDefault();
     let codeProduct = fieldSearchProduct.value;
-    productFound = productList.find(product => codeProduct == product.codigo);
+    productFound = productList.find(product => codeProduct == product.code);
     if (productFound !== undefined) {
-        fieldNameProduct.value = productFound.produto;
-        fieldPriceProduct.value = formatPrice(productFound.preco);
+        fieldNameProduct.value = productFound.productName;
+        fieldPriceProduct.value = formatPrice(productFound.price);
         fieldAmountProduct.value = '1';
         buttonAddProduct.removeAttribute('disabled');
     } else {
@@ -126,66 +128,69 @@ function addProductOnTable(e) {
     buttonSaveOrder.removeAttribute('disabled');
     buttonAddProduct.setAttribute('disabled', 'true');
     let codeProduct = fieldSearchProduct.value;
-    let sameProduct = arrayOrder.find(produto => produto.codigo == codeProduct);
+    let sameProduct = arrayOrder.find(product => product.code == codeProduct);
     let totalOrder = 0;
 
     productFound = {
         ...productFound,
-        quantidade: Number(fieldAmountProduct.value),
-        total: fieldAmountProduct.value * productFound.preco
+        amount: Number(fieldAmountProduct.value),
+        total: fieldAmountProduct.value * productFound.price
     };
 
     if (sameProduct !== undefined) {
         arrayOrder.forEach(item => {
-            if (item.codigo == sameProduct.codigo) {
-                item.quantidade += Number(fieldAmountProduct.value);
-                item.total = item.quantidade * item.preco;
+            if (item.code == sameProduct.code) {
+                item.amount += Number(fieldAmountProduct.value);
+                item.total = item.amount * item.price;
             }
         });
 
         updateOrderList();
 
         totalOrder = arrayOrder.reduce((atual, item) => {
-            return atual + item.quantidade * item.preco;
+            return atual + item.amount * item.price;
         }, 0);
 
-        totalAmountOrder.innerHTML = `Total do pedido: ${formatPrice(
+        totalAmountOrder.innerHTML = `Total do pedido: <span class="total-order-bold">${formatPrice(
             totalOrder
-        )}`;
+        )}<span>`;
         form.reset();
         return;
     }
 
     arrayOrder.push(productFound);
 
-    totalOrder = arrayOrder.reduce((atual, item) => {
-        return atual + item.quantidade * item.preco;
+    totalOrder = arrayOrder.reduce((current, item) => {
+        return current + item.amount * item.price;
     }, 0);
 
     let trTds = `
     <tr>
-        <td>${productFound.codigo}</td>
-        <td>${productFound.produto}</td>
-        <td>${productFound.quantidade}</td>
+        <td>${productFound.code}</td>
+        <td>${productFound.productName}</td>
+        <td>${productFound.amount}</td>
         <td>${formatPrice(productFound.total)}</td>
     </tr>`;
 
     tBodyProduct.innerHTML += trTds;
     feedbackNoProducts.style.display = 'none';
     containerTotalOrder.style.display = 'flex';
-    totalAmountOrder.innerHTML = `Total do pedido: ${formatPrice(totalOrder)}`;
+    containerSetSave.style.justifyContent = 'space-between';
+    totalAmountOrder.innerHTML = `Total do pedido: <span class="total-order-bold">${formatPrice(
+        totalOrder
+    )}<span>`;
     form.reset();
 }
 
 function updateOrderList() {
     let trTds = '';
-    arrayOrder.forEach(pedido => {
+    arrayOrder.forEach(order => {
         trTds += `
             <tr>
-                <td>${pedido.codigo}</td>
-                <td>${pedido.produto}</td>
-                <td>${pedido.quantidade}</td>
-                <td>${formatPrice(pedido.total)}</td>
+                <td>${order.code}</td>
+                <td>${order.productName}</td>
+                <td>${order.amount}</td>
+                <td>${formatPrice(order.total)}</td>
             </tr>`;
     });
 
@@ -199,6 +204,7 @@ function cancelOrder() {
     tBodyProduct.innerHTML = '';
     feedbackNoProducts.style.display = 'flex';
     containerTotalOrder.style.display = 'none';
+    containerSetSave.style.justifyContent = 'flex-end';
     arrayOrder = [];
 }
 
@@ -208,22 +214,22 @@ function saveOrder() {
     ).value;
 
     let statusOrder = 'Recebido';
-    let totalOrder = arrayOrder.reduce((atual, item) => {
-        return atual + item.quantidade * item.preco;
+    let totalOrder = arrayOrder.reduce((current, item) => {
+        return current + item.amount * item.price;
     }, 0);
 
     let itensOrder = arrayOrder.map(item => {
         return {
-            produto: item.produto,
-            quantidade: item.quantidade
+            product: item.productName,
+            amount: item.amount
         };
     });
 
     let order = {
-        numero: numberOrder,
-        itens: itensOrder,
-        tipo: typeRequest,
-        valor: totalOrder,
+        number: numberOrder,
+        items: itensOrder,
+        type: typeRequest,
+        price: totalOrder,
         status: statusOrder
     };
 
@@ -266,17 +272,17 @@ function showOrder(order) {
     trTds += `
             <tr>
                 <td><input type="checkbox" onclick="selectCheckbox()"> ${
-                    order.numero
+                    order.number
                 }</td>
                 <td>
-                ${order.itens
-                    .map(item => `${item.quantidade} - ${item.produto} </br>`)
+                ${order.items
+                    .map(item => `${item.amount} - ${item.product} </br>`)
                     .join('')}
                 </td>
-                <td>${order.tipo}</td>
-                <td>${formatPrice(order.valor)}</td>
+                <td>${order.type}</td>
+                <td>${formatPrice(order.price)}</td>
                 <td><button class="button-order-status" onclick="changeOrderStatus(${
-                    order.numero
+                    order.number
                 })">${order.status}</button></td>
             </tr>`;
 
@@ -289,22 +295,22 @@ function updateAllOrders(array = arrayOrders) {
         trTds += `
         <tr>
             <td><input type="checkbox" onclick="selectCheckbox()"> ${
-                order.numero
+                order.number
             } </td>
             <td>
-                ${order.itens
-                    .map(item => `${item.quantidade} - ${item.produto} </br>`)
+                ${order.items
+                    .map(item => `${item.amount} - ${item.product} </br>`)
                     .join('')}
             </td>
-            <td>${order.tipo}</td>
-            <td>${formatPrice(order.valor)}</td>
+            <td>${order.type}</td>
+            <td>${formatPrice(order.price)}</td>
             <td><button class="button-order-status ${
                 order.status == 'Recebido'
                     ? ''
                     : order.status === 'Pronto'
                     ? 'ready'
                     : 'delivered'
-            }" onclick="changeOrderStatus(${order.numero})">${
+            }" onclick="changeOrderStatus(${order.number})">${
             order.status
         }</button></td>
         </tr>`;
@@ -313,9 +319,9 @@ function updateAllOrders(array = arrayOrders) {
     tbodyOrders.innerHTML = trTds;
 }
 
-function changeOrderStatus(orderNumero) {
+function changeOrderStatus(orderNumber) {
     arrayOrders = arrayOrders.map(order => {
-        if (order.numero == orderNumero) {
+        if (order.number == orderNumber) {
             if (order.status == 'Recebido') {
                 order.status = 'Pronto';
             } else if (order.status == 'Pronto') {
@@ -380,7 +386,7 @@ function deleteOrder() {
     if (confirm(message) == true) {
         checkboxs.forEach(item => {
             arrayOrders = arrayOrders.filter(
-                order => order.numero != item.parentNode.textContent
+                order => order.number != item.parentNode.textContent
             );
         });
 
@@ -421,9 +427,6 @@ function deleteOrder() {
     }
 }
 
-let arrayFilteredByType = [];
-let arrayFilteredByStatus = [];
-
 function filterOrdersByType() {
     let orderType = selectChangeType.value;
 
@@ -433,12 +436,12 @@ function filterOrdersByType() {
             arrayFilteredByType = [];
         } else if (orderType == 'Delivery') {
             arrayFilteredByType = arrayFilteredByStatus.filter(
-                order => order.tipo == 'Delivery'
+                order => order.type == 'Delivery'
             );
             updateAllOrders(arrayFilteredByType);
         } else if (orderType == 'Salão') {
             arrayFilteredByType = arrayFilteredByStatus.filter(
-                order => order.tipo == 'Salão'
+                order => order.type == 'Salão'
             );
             updateAllOrders(arrayFilteredByType);
         }
@@ -448,12 +451,12 @@ function filterOrdersByType() {
             arrayFilteredByType = [];
         } else if (orderType == 'Delivery') {
             arrayFilteredByType = arrayOrders.filter(
-                order => order.tipo == 'Delivery'
+                order => order.type == 'Delivery'
             );
             updateAllOrders(arrayFilteredByType);
         } else if (orderType == 'Salão') {
             arrayFilteredByType = arrayOrders.filter(
-                order => order.tipo == 'Salão'
+                order => order.type == 'Salão'
             );
             updateAllOrders(arrayFilteredByType);
         }
