@@ -500,12 +500,17 @@ form .search-product input {
 
 .total-order {
     display: none;
-    width: 320px;
+    min-width: 320px;
     height: 22px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 22px;
+    text-transform: uppercase;
+    color: var(--color-neutral);
+}
+.total-order-bold {
+    font-weight: 700;
     color: var(--color-neutral);
 }
 
