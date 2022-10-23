@@ -90,6 +90,12 @@ const feedbackOrders = document.getElementById('feedback-show-order');
 const messageFeedback = document.getElementById('feedback-message');
 const buttonCloseFeedback = document.getElementById('close-feedback');
 
+const modal = document.getElementById('dialog-order');
+const buttonCloseModal = document.getElementById('btn-close-modal-order');
+const modalDelete = document.getElementById('dialog-delete');
+const buttonCancelDelete = document.getElementById('btn-modal-cancel');
+const buttonConfirmDelete = document.getElementById('btn-modal-confirm');
+
 const date = document.getElementById('date');
 const time = document.getElementById('hour');
 
@@ -113,13 +119,14 @@ function searchProduct(e) {
     if (productFound !== undefined) {
         fieldNameProduct.value = productFound.productName;
         fieldPriceProduct.value = formatPrice(productFound.price);
-        fieldAmountProduct.value = '1';
+        fieldAmountProduct.value = 1;
         buttonAddProduct.removeAttribute('disabled');
     } else {
         fieldNameProduct.value = '';
         fieldPriceProduct.value = '';
+        fieldAmountProduct.value = 0;
         buttonAddProduct.setAttribute('disabled', 'true');
-        alert('Código do produto não encontrado');
+        modal.showModal();
     }
 }
 
@@ -389,7 +396,7 @@ function selectCheckbox() {
 
 function deleteOrder() {
     let message = 'Deseja realmente excluir o pedido?';
-    let checkboxs = document.querySelectorAll(
+    const checkboxs = document.querySelectorAll(
         'input[type="checkbox"]:checked:not([id=select-all-orders])'
     );
 
@@ -397,11 +404,15 @@ function deleteOrder() {
         message = 'Deseja realmente excluir os pedidos?';
     }
 
-    if (confirm(message) == true) {
+    const messageModal = document.querySelector('#dialog-delete > div h2');
+    messageModal.textContent = message;
+
+    modalDelete.showModal();
+
+    buttonConfirmDelete.onclick = () => {
         checkboxs.forEach(item => {
-            arrayOrders = arrayOrders.filter(
-                order => order.number != item.parentNode.textContent
-            );
+            console.log(item);
+            arrayOrders = arrayOrders.filter(order => order.number != item.id);
         });
 
         updateAllOrders();
@@ -420,6 +431,7 @@ function deleteOrder() {
         }
 
         feedbackOrders.style.display = 'flex';
+
         setTimeout(() => {
             if (document.body.clientWidth < 500) {
                 feedbackOrders.style.right = '5px';
@@ -438,7 +450,9 @@ function deleteOrder() {
                 feedbackOrders.style.display = 'none';
             }, 200);
         }, 5000);
-    }
+
+        modalDelete.close();
+    };
 }
 
 function filterOrdersByType() {
@@ -568,6 +582,14 @@ function fixZero(time) {
     return time < 10 ? `0${time}` : time;
 }
 
+function closeModal() {
+    modal.close();
+}
+
+function cancelDeleteOrder() {
+    modalDelete.close();
+}
+
 buttonAddNewOrder.addEventListener('click', changeSection);
 buttonSearchProduct.addEventListener('click', searchProduct);
 buttonAddProduct.addEventListener('click', addProductOnTable);
@@ -580,3 +602,5 @@ selectChangeType.addEventListener('change', filterOrdersByType);
 selectChangeStatus.addEventListener('change', filterOrdersByStatus);
 buttonPrint.addEventListener('click', printOrders);
 buttonCloseFeedback.addEventListener('click', closeFeedback);
+buttonCloseModal.addEventListener('click', closeModal);
+buttonCancelDelete.addEventListener('click', cancelDeleteOrder);

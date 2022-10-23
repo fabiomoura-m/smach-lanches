@@ -60,12 +60,10 @@
                         Imprimir
                     </button>
                 </div>
-
                 <div class="buttons-edit" id="container-delete">
                     <button class="btn-trash" id="btn-delete"><img src="/assets/images/trash.svg"
                             alt="">Excluir</button>
                 </div>
-
                 <div class="table">
                     <table class="order-table">
                         <thead>
@@ -83,16 +81,23 @@
                             </tr>
                         </thead>
                         <tbody id="tBodyOrders" class="tBodyOrders">
-
                         </tbody>
                     </table>
+                    <dialog id="dialog-delete" class="modal modal-delete">
+                        <div>
+                            <h2>Deseja realmente excluir o pedido?</h2>
+                            <div>
+                                <button id="btn-modal-confirm" class="close-modal confirm">Sim</button>
+                                <button id="btn-modal-cancel" class="close-modal cancel">Não</button>
+                            </div>
+                        </div>
+                    </dialog>
                 </div>
                 <div class="feedback-order" id="feedback-orders">
                     <img src="/assets/images/bg-lanches.svg" alt="">
                     <p>Não temos pedidos para mostrar</p>
                 </div>
             </section>
-
             <section class="new-order" id="new-order">
                 <header class="header">
                     <h1>Novo pedido</h1>
@@ -168,13 +173,19 @@
                         <button class="button-save" id="btn-save" disabled>Salvar pedido</button>
                     </div>
                 </div>
+                <dialog id="dialog-order" class="modal">
+                    <div>
+                        <h2>Código do produto não encontrado!</h2>
+                        <button id="btn-close-modal-order" class="close-modal"><img src="assets/images/close.svg"
+                                alt=""></button>
+                    </div>
+                </dialog>
             </section>
         </main>
     </div>
     <footer class="footer">
         Copyright © 2022 M & M Technologies - Todos os direitos reservados
     </footer>
-
 
     <script src="assets/js/script.js"></script>
 </body>

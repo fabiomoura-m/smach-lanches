@@ -86,6 +86,10 @@ td {
     vertical-align: middle;
 }
 
+main {
+    padding: 21px;
+}
+
 .container {
     flex: 1;
     width: 100%;
@@ -94,6 +98,62 @@ td {
 
     display: grid;
     grid-template-columns: 318px 1fr;
+}
+
+.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    line-height: 22px;
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+}
+.modal div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-neutral);
+}
+.modal-delete > div {
+    gap: 1rem;
+    flex-direction: column;
+}
+.modal .close-modal {
+    background-color: var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    width: 50px;
+    height: 40px;
+    transition: 0.4s;
+}
+.modal .close-modal:hover {
+    background-color: var(--color-status-danger-300);
+}
+.modal img {
+    filter: invert(65%) sepia(50%) saturate(3005%) hue-rotate(344deg)
+        brightness(102%) contrast(101%);
+}
+.modal .close-modal.confirm {
+    width: 80px;
+    color: var(--color-white);
+    background-color: var(--color-accent);
+}
+.modal .close-modal.confirm:hover {
+    background-color: var(--color-accent-700);
+}
+.modal .close-modal.cancel {
+    width: 80px;
+    color: var(--color-white);
+    background-color: var(--color-neutral);
+}
+.modal .close-modal.cancel:hover {
+    background-color: var(--color-neutral-600);
 }
 
 /* ----------------------------- */
@@ -125,10 +185,6 @@ td {
     font-size: 14px;
     line-height: 17px;
     color: var(--color-neutral);
-}
-
-main {
-    padding: 21px;
 }
 
 /* ----------------------------- */
