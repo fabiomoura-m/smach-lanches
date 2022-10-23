@@ -188,7 +188,7 @@ main {
 }
 
 /* ----------------------------- */
-/* ----- SEÇÃO DE PEDIDOS ------ */
+/* ------- SECTION ORDERS ------ */
 /* ----------------------------- */
 
 .header {
@@ -419,7 +419,7 @@ main {
 }
 
 /* ----------------------------- */
-/* ----- SEÇÃO NOVO PEDIDO ----- */
+/* ----- SECTION NEW ORDER ----- */
 /* ----------------------------- */
 
 .new-order {
@@ -642,6 +642,10 @@ form .search-product input {
     line-height: 17px;
 }
 
+/* ----------------------------- */
+/* ---------- PRINT ------------ */
+/* ----------------------------- */
+
 @media print {
     .container {
         grid-template-columns: 1fr;
@@ -657,9 +661,23 @@ form .search-product input {
     }
 }
 
+/* ----------------------------- */
+/* -------- RESPONSIVE --------- */
+/* ----------------------------- */
+
 @media (max-width: 780px) {
     .select-filter {
         width: auto;
+    }
+    .order-table thead .checkbox-wrapper {
+        width: 110px;
+    }
+    .feedback-order {
+        margin-top: 0px;
+    }
+    .container-set-save {
+        margin-top: 10px;
+        flex-wrap: wrap;
     }
 }
 
@@ -667,8 +685,14 @@ form .search-product input {
     body {
         overflow-x: hidden;
     }
-    .container-feedback {
-        display: none;
+    button {
+        font-size: 14px;
+    }
+    input {
+        font-size: 14px;
+    }
+    .select-filter {
+        font-size: 14px;
     }
     .container {
         grid-template-columns: 1fr;
@@ -689,15 +713,36 @@ form .search-product input {
         justify-content: center;
         align-items: center;
     }
+    .header h1 {
+        font-size: 28px;
+    }
+    .orders .button-newOrder {
+        margin-bottom: 40px;
+    }
     .container-fields {
         flex-wrap: wrap;
     }
     .table {
-        width: 100%;
+        max-width: 380px;
         overflow-x: scroll;
+        font-size: 15px;
     }
-    .container-set-save {
-        margin-top: 10px;
-        flex-wrap: wrap;
+    .order-table thead .checkbox-wrapper {
+        width: 100px;
+    }
+    .order-table td {
+        font-size: 14px;
+    }
+    .feedback-order img {
+        width: 250px;
+    }
+    .feedback-order p {
+        font-size: 20px;
+    }
+    .container-set-save .total-order {
+        font-size: 18px;
+    }
+    .footer {
+        font-size: 13px;
     }
 }
