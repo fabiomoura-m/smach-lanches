@@ -1,56 +1,3 @@
-let productList = [
-    {
-        code: 1001,
-        productName: 'Super SMACH COMBO Programado - Hambúrguer + fritas',
-        price: 55
-    },
-    {
-        code: 1002,
-        productName: 'SMACH VariávelBurguer - Hambúrguer com Bacon',
-        price: 45
-    },
-    {
-        code: 1003,
-        productName: 'SMACH BUG EM PROD - Hambúrguer meio torto',
-        price: 25
-    },
-    {
-        code: 1004,
-        productName: 'Combo Econômico SMACH Char 1 - Pão com Carne',
-        price: 15
-    },
-    {
-        code: 1005,
-        productName: 'Especial SMACH CSS - Hambúrguer colorido e alinhado',
-        price: 65
-    },
-    {
-        code: 2001,
-        productName: 'Refrigerante 350 ml',
-        price: 8
-    },
-    {
-        code: 2002,
-        productName: 'Água 500 ml',
-        price: 5
-    },
-    {
-        code: 2003,
-        productName: 'Suco 350 ml',
-        price: 7
-    },
-    {
-        code: 3001,
-        productName: 'Sorvete 300 ml',
-        price: 15
-    },
-    {
-        code: 3002,
-        productName: 'Sobremesa doce SMACH ARRAY',
-        price: 50
-    }
-];
-
 const buttonSearchProduct = document.getElementById('btn-search');
 const fieldSearchProduct = document.getElementById('codeProduct');
 const fieldNameProduct = document.getElementById('nameProduct');
@@ -114,7 +61,7 @@ function changeSection() {
 
 function searchProduct(e) {
     e.preventDefault();
-    let codeProduct = fieldSearchProduct.value;
+    const codeProduct = fieldSearchProduct.value;
     productFound = productList.find(product => codeProduct == product.code);
     if (productFound !== undefined) {
         fieldNameProduct.value = productFound.productName;
@@ -134,7 +81,7 @@ function addProductOnTable(e) {
     e.preventDefault();
     buttonSaveOrder.removeAttribute('disabled');
     buttonAddProduct.setAttribute('disabled', 'true');
-    let codeProduct = fieldSearchProduct.value;
+    const codeProduct = fieldSearchProduct.value;
     let sameProduct = arrayOrder.find(product => product.code == codeProduct);
     let totalOrder = 0;
 
@@ -354,7 +301,7 @@ function changeOrderStatus(orderNumber) {
     updateAllOrders();
 }
 
-function showEditDelete(checked = false) {
+function showButtonDelete(checked = false) {
     if (checkedAll || checked) {
         filterContainer.style.display = 'none';
         deleteContainer.style.display = 'flex';
@@ -376,7 +323,7 @@ function selectAllCheckbox() {
     checkedAll = checkedAll ? false : true;
 
     if (checkboxs.length > 0) {
-        showEditDelete();
+        showButtonDelete();
     }
 }
 
@@ -391,7 +338,7 @@ function selectCheckbox() {
         checked = true;
     }
 
-    showEditDelete(checked);
+    showButtonDelete(checked);
 }
 
 function deleteOrder() {
@@ -410,8 +357,8 @@ function deleteOrder() {
     modalDelete.showModal();
 
     buttonConfirmDelete.onclick = () => {
+        const checkboxTHead = document.getElementById('select-all-orders');
         checkboxs.forEach(item => {
-            console.log(item);
             arrayOrders = arrayOrders.filter(order => order.number != item.id);
         });
 
@@ -419,6 +366,8 @@ function deleteOrder() {
 
         if (arrayOrders.length === 0) {
             feedbackNoProductsOrder.style.display = 'flex';
+            checkboxTHead.checked = false;
+            checkedAll = checkedAll ? false : true;
         }
 
         filterContainer.style.display = 'flex';
