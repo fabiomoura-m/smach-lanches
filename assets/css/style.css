@@ -251,6 +251,7 @@ main {
     border-bottom: solid var(--color-neutral-200) 1px;
     background-color: #ececec;
     color: var(--color-neutral-700);
+    font-weight: 500;
 }
 .order-table th,
 .order-table td {
@@ -692,6 +693,9 @@ form .search-product input {
     .container-fields {
         flex-wrap: wrap;
     }
+    .container-filter .select-filter:last-child {
+        margin-top: 10px;
+    }
     .table {
         max-width: 380px;
         overflow-x: scroll;
@@ -717,5 +721,11 @@ form .search-product input {
     }
     .footer {
         font-size: 0.8125rem;
+        text-align: center;
+    }
+}
+@media (max-width: 376px) {
+    .table {
+        max-width: 330px;
     }
 }
