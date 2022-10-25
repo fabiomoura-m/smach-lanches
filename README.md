@@ -20,7 +20,7 @@ e por seu status (recebido, pronto, entregue) e realizar a interação da atuali
 <p>
 O projeto foi realizado utilizando a metodologia de pair programming com <a href="https://github.com/GuilhermeMaywald" target="_blank">Guilherme</a>. Utilizamos o trello para a divisão de tarefas e
 acompanhamento do desenvolvimento. Para acessar o menu do restaurante, <a href="https://github.com/fabiomoura-m/smach-lanches/blob/main/assets/js/products.js" target="_blank">clique aqui</a>. É necessário saber o código do produto
-no momento de cadastrar os itens do pedido.
+no momento de cadastrar os itens do pedido. Para retornar da página de novo pedido para a página de todos os pedidos, basta dar duplo clique no botão cancelar.
 </p>
 
 ---
